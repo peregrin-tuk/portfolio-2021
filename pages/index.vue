@@ -2,10 +2,8 @@
   <Tutorial :greeting="greeting" />
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
+<script>
+export default {
   name: 'Home',
   head () {
     return {
@@ -23,5 +21,5 @@ export default Vue.extend({
       error({ statusCode: 404, message: 'Page not found' })
     }
   },
-})
+}
 </script>
