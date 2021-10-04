@@ -1,7 +1,9 @@
 <template>
     <div class="h-screen w-full bg-gradient mx-auto">
+
+        <!--- SVG Background --->
         <div v-if="isMobile">
-            <svg class="rhomb rim-right text-backgroundAccent stroke-current" width="28vh" height="auto" 
+            <svg class="absolute bottom-0 right-0 transform translate-y-1/2  text-backgroundAccent stroke-current" width="28vh" height="auto" 
                 viewBox="0 0 181 587" fill="none" xmlns="http://www.w3.org/2000/svg"
             >
                 <path d="M202.241 294.229L159.444 190.432L116.648 294.229L159.444 397.388L202.241 294.229Z" vector-effect="non-scaling-stroke" />
@@ -10,14 +12,14 @@
             </svg>
         </div>
         <div v-else>
-            <svg class="rhomb text-backgroundAccent stroke-current" width="30vw" height="auto" 
+            <svg class="absolute bottom-0 transform translate-y-1/2 rhomb text-backgroundAccent stroke-current" width="30vw" height="auto" 
                 viewBox="0 0 426 814" fill="none" xmlns="http://www.w3.org/2000/svg"
             >
                 <path d="M424.5 407L327 170L229.5 407L327 643L424.5 407Z" vector-effect="non-scaling-stroke" />
                 <path d="M349 407L203.5 70.5L58 407L203.5 743L349 407Z" vector-effect="non-scaling-stroke" />
                 <path d="M298.5 407L124.5 1.5L-49.5 407L124.5 812L298.5 407Z" vector-effect="non-scaling-stroke" />
             </svg>
-            <svg class="rhomb rim-right text-backgroundAccent stroke-current"  width="30vw" height="auto" 
+            <svg class="absolute bottom-0 right-0 transform translate-y-1/2 text-backgroundAccent stroke-current"  width="30vw" height="auto" 
                 viewBox="0 0 442 917" fill="none" xmlns="http://www.w3.org/2000/svg"
             >
                 <path d="M359 459L292 296.5L225 459L292 620.5L359 459Z" vector-effect="non-scaling-stroke" />
@@ -25,8 +27,18 @@
                 <path d="M287.5 459L144.5 112.5L1.5 459L144.5 805L287.5 459Z" vector-effect="non-scaling-stroke" />
             </svg>
         </div>
-        
 
+        <!--- Logo & Nav --->
+        <div class="absolute w-full top-9 px-16 flex justify-between text-backgroundAccent">
+            <div>V</div>
+            <div class="flex justify-end font-secondary text-sm">
+                <span class="hover-accent-1 ml-14">projects</span>
+                <span class="hover-accent-1 ml-14">about</span>
+                <span class="hover-accent-1 ml-14">contact</span>
+            </div>
+        </div>
+        
+        <!--- Hero --->
         <div class="flex h-screen p-12">
             <div class="hero text-textBright m-auto flex items-center flex-wrap">
                 <span class="font-bold text-xl sm:text-xxl pr-7 -ml-1.5">{{ $prismic.asText(content.greeting) }}</span>
@@ -34,17 +46,20 @@
             </div>
         </div>
         
+        <!--- Actions --->
         <div class="actions absolute w-full flex justify-center items-center">
-            <div class="p-4 w-64 flex justify-end">
-                <div class="font-secondary text-textSubtle text-sm w-40 text-right">
+            <div class="p-4 w-72 flex justify-end text-textSubtle hover-bright-4">
+                <img src="~/assets/svg/quick-icon.svg" alt="Stopwatch Icon">
+                <div class="action-left font-secondary text-sm ml-4 text-right">
                     <prismic-rich-text :field="content.quick_text_desktop" :htmlSerializer="secondarySerializer" />
                 </div>
             </div>
             <div class="divider w-px h-24 bg-accent"></div>
-            <div class="p-4 w-64">
-                <div class="font-secondary text-textSubtle text-sm w-48">
+            <div class="p-4 w-72 flex justify-start text-textSubtle hover-bright-4">
+                <div class="font-secondary text-sm w-48 mr-4">
                     <prismic-rich-text :field="content.book_text_desktop" :htmlSerializer="secondarySerializer" />
                 </div>
+                <img src="~/assets/svg/book-icon.svg" alt="Telescope Icon">
             </div>
         </div>
     </div>
@@ -72,20 +87,14 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.rhomb {
-    position: absolute;
-    bottom: 0%;
-    transform: translateY(50%);
-
-    &.rim-right {
-        right: 0%;
-    }
-}
+<style scoped>
 .hero {
     transform: translateY(-5vh);
 }
 .actions {
     bottom: 6%;
+}
+.action-left {
+    width: 9.5rem;
 }
 </style>

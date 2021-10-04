@@ -1,0 +1,15 @@
+/* custom components and styles */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+      .hover-bright-4 {
+        @apply transition duration-500 transform hover:-translate-y-4 hover:text-textBright;
+      }
+      .hover-accent-1 {
+        @apply transition duration-500 transform hover:-translate-y-0.5 hover:text-accent;
+      }
+  }
+
