@@ -5,10 +5,13 @@
 @tailwind utilities;
 
 @layer components {
-      .hover-bright-4 {
+      .hover-bright-up {
         @apply transition duration-500 transform hover:-translate-y-4 hover:text-textBright;
       }
-      .hover-accent-1 {
+      .hover-bright-right { // CHECK currently not in use
+        @apply transition duration-500 transform hover:translate-x-2 hover:text-textBright;
+      }
+      .hover-accent-subtle {
         @apply transition duration-500 transform hover:-translate-y-0.5 hover:text-accent;
       }
   }
