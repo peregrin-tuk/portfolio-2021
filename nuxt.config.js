@@ -73,6 +73,13 @@ export default {
           screens: {
             '3xl': '1920px',
           },
+          spacing: {
+            '88': '22rem',
+            '120': '30rem',
+          },
+          zIndex: { // CHECK delete if not used
+            '-10': '-10',
+          },
           colors: {
             background: 'rgba(24, 37, 56, 1)',
             backgroundAccent: 'rgba(54, 74, 104, 1)',

@@ -1,12 +1,16 @@
 <template>
-  <header-section :content="header" />
+  <div>
+    <header-section :content="header" />
+    <recent-projects-section />
+  </div>
 </template>
 
 <script>
 import HeaderSection from '~/components/home/header/HeaderSection.vue'
+import RecentProjectsSection from '~/components/home/recent/RecentProjectsSection.vue'
 
 export default {
-  components: { HeaderSection },
+  components: { HeaderSection, RecentProjectsSection },
   name: 'Home',
   head () {
     return {
