@@ -54,9 +54,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    cache: true,
-    parallel: true,
-    hardSource: true,
+    // cache: true,
+    // parallel: true,
+    // hardSource: true,
   },
 
   // Prismic configuration
@@ -76,6 +76,13 @@ export default {
           spacing: {
             '88': '22rem',
             '120': '30rem',
+            '294': '73.5rem',
+          }, 
+          maxWidth: {
+            '88': '22rem',
+          },
+          minHeight: {
+            '152': '38rem',
           },
           zIndex: { // CHECK delete if not used
             '-10': '-10',

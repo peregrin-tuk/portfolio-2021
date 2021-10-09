@@ -126,16 +126,16 @@ export default {
     },
     methods: {
         openNavigation() {
-            this.showNav = true;
+            this.showNav = true
         },
         closeNavigation() {
-            this.showNav = false;
+            this.showNav = false
         },
         secondarySerializer(type, element, content, children) {
             if (type === prismicDOM.RichText.Elements.strong) {
-                return '<span class="text-textBright">' + children.join("") + "</span>";
+                return '<span class="text-textBright">' + children.join("") + "</span>"
             }
-            return null;
+            return null
         },
     }
 }
