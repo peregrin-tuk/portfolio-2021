@@ -23,9 +23,8 @@ export default {
     },
     async fetch() {
         const content = await this.$prismic.api.getSingle('featured_projects', { fetchLinks : ['project.title', 'project.teaser', 'project.tags', 'project.key_image'] })
-        console.debug(content)
+
         for(const p of content.data.projects) {
-            console.debug(p)
             this.recentProjects.push({
                 'title': p.item.data.title,
                 'teaser': p.item.data.teaser,
@@ -33,8 +32,7 @@ export default {
                 'image': p.item.data.key_image.card
             })
         }
-        console.debug(this.recentProjects)
-  },
+    },
 }
 </script>
 

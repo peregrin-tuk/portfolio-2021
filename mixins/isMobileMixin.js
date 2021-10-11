@@ -5,11 +5,11 @@ export const isMobileMixin = {
         }
     },
     created() {
-        this.checkBreakpoint();
-        if (process.client) window.addEventListener('resize', this.checkBreakpoint);
+        this.$checkBreakpoint();
+        if (process.client) window.addEventListener('resize', this.$checkBreakpoint);
     },
     methods: {
-        checkBreakpoint() {
+        $checkBreakpoint() {
             if (process.client) this.isMobile = window.innerWidth < 640; // sm breakpoint of tailwind
         },
     } 

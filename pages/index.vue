@@ -2,15 +2,18 @@
   <div>
     <header-section :content="header" />
     <recent-projects-section />
+    <about-section />
   </div>
 </template>
 
 <script>
 import HeaderSection from '~/components/home/header/HeaderSection.vue'
 import RecentProjectsSection from '~/components/home/recent/RecentProjectsSection.vue'
+import AboutSection from '~/components/home/about/AboutSection.vue'
+
 
 export default {
-  components: { HeaderSection, RecentProjectsSection },
+  components: { HeaderSection, RecentProjectsSection, AboutSection },
   name: 'Home',
   head () {
     return {

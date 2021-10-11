@@ -67,7 +67,7 @@
         <div v-else>
             <div class="actions absolute w-full flex justify-center items-center">
                 <div class="p-4 pb-0 w-72 flex justify-end text-textSubtle hover-bright-up">
-                    <img src="~/assets/svg/quick-icon.svg" alt="Stopwatch Icon">
+                    <img class="w-9" src="~/assets/svg/quick-icon.svg" alt="Stopwatch Icon">
                     <div class="action-left font-secondary text-sm ml-4 text-right">
                         <prismic-rich-text :field="content.quick_text_desktop" :htmlSerializer="secondarySerializer" />
                     </div>
@@ -77,7 +77,7 @@
                     <div class="font-secondary text-sm w-48 mr-4">
                         <prismic-rich-text :field="content.book_text_desktop" :htmlSerializer="secondarySerializer" />
                     </div>
-                    <img src="~/assets/svg/book-icon.svg" alt="Telescope Icon">
+                    <img class="w-9" src="~/assets/svg/book-icon.svg" alt="Telescope Icon">
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import NavigationMobile from '~/components/home/header/NavigationMobile.vue'
+import NavigationMobile from './NavigationMobile.vue'
 import { isMobileMixin } from '~/mixins/isMobileMixin.js'
 import prismicDOM from "prismic-dom";
 

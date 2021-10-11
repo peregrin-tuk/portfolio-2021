@@ -65,17 +65,22 @@ export default {
     modern: true
   },
 
-  // Extension of tailwind configuration (custom fonts)
+  // Extension of tailwind configuration
   tailwindcss: {
     config: {
       theme: {
         extend: {
+          backgroundImage: {
+            'metro-desktop': 'url("@/assets/svg/metro-plan-desktop.svg"',
+            'metro-mobile': 'url("@/assets/svg/metro-plan-mobile.svg"',
+          },
           screens: {
             '3xl': '1920px',
           },
           spacing: {
             '88': '22rem',
             '120': '30rem',
+            '192': '48rem',
             '294': '73.5rem',
           }, 
           maxWidth: {
