@@ -70,10 +70,6 @@ export default {
     config: {
       theme: {
         extend: {
-          backgroundImage: {
-            'metro-desktop': 'url("@/assets/svg/metro-plan-desktop.svg"',
-            'metro-mobile': 'url("@/assets/svg/metro-plan-mobile.svg"',
-          },
           screens: {
             '3xl': '1920px',
           },

@@ -1,0 +1,7 @@
+{
+    "include": [
+        "components/**/*",
+        "pages/**/*",
+        "mixins/*"
+    ]
+}
