@@ -1,7 +1,8 @@
-export const isMobileMixin = {
+export const breakpointMixin = {
     data() {
         return {
-            isMobile: false
+            isMobile: false,
+            isTablet: false,
         }
     },
     created() {
@@ -10,6 +11,7 @@ export const isMobileMixin = {
     },
     methods: {
         $checkBreakpoint() {
+            if (process.client) this.isTablet = window.innerWidth < 768; // sm breakpoint of tailwind
             if (process.client) this.isMobile = window.innerWidth < 640; // sm breakpoint of tailwind
         },
     } 

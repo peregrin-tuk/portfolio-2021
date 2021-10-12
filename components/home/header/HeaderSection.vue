@@ -90,12 +90,12 @@
 
 <script>
 import NavigationMobile from './NavigationMobile.vue'
-import { isMobileMixin } from '~/mixins/isMobileMixin.js'
+import { breakpointMixin } from '~/mixins/breakpointMixin.js'
 import prismicDOM from "prismic-dom";
 
 
 export default {
-    mixins: [isMobileMixin],
+    mixins: [breakpointMixin],
     components: { NavigationMobile },
     props: {
         content: {

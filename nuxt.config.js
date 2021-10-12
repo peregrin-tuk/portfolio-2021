@@ -78,9 +78,16 @@ export default {
             '3xl': '1920px',
           },
           spacing: {
+            '13': '3.25rem',
+            '22': '5.5rem',
+            '66': '16.5rem',
             '88': '22rem',
+            '92': '23rem',
+            '104': '26rem',
             '120': '30rem',
+            '184': '46rem',
             '192': '48rem',
+            '244': '61rem',
             '294': '73.5rem',
           }, 
           maxWidth: {
@@ -89,15 +96,14 @@ export default {
           minHeight: {
             '152': '38rem',
           },
-          zIndex: { // CHECK delete if not used
-            '-10': '-10',
-          },
           colors: {
             background: 'rgba(24, 37, 56, 1)',
             backgroundAccent: 'rgba(54, 74, 104, 1)',
+            backgroundAccent2: 'rgba(66, 91, 128, 1)',
             backgroundBright: 'rgba(247, 250, 254, 1)',
             accent: 'rgba(255, 69, 76, 1)',
             accentSubtle: 'rgba(255, 128, 132, 0.6)',
+            accentSoft: ' rgba(236, 88, 93, 1)',
             accent2: 'rgba(77, 100, 210, 1)',
             textBright: 'rgba(255, 255, 255, 1)',
             textSubtle: 'rgba(114, 128, 150, 0.6)',

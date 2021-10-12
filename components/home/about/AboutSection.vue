@@ -1,6 +1,6 @@
 <template>
-    <div class="w-full bg-gradient flex items-start justify-center">
-        <about-previous-stops  />
+    <div class="w-full bg-gradient flex items-start justify-center items-center flex-col-reverse xl:flex-row">
+        <about-previous-stops :work="content.work" :education="content.education" />
         <about-textbox :whatText="content.what_i_do" :whoText="content.who_i_am" />
     </div>
 </template>
@@ -19,6 +19,7 @@ export default {
     },
     async fetch() {
         this.content = (await this.$prismic.api.getSingle('about')).data
+        console.debug('work', this.content.work)
     },
 }
 </script>
