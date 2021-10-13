@@ -19,7 +19,6 @@ export default {
     },
     async fetch() {
         this.content = (await this.$prismic.api.getSingle('about')).data
-        console.debug('work', this.content.work)
     },
 }
 </script>

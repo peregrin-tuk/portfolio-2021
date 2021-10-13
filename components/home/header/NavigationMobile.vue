@@ -6,11 +6,11 @@
             </svg>
             <span class="my-14 text-h5 text-background">{{ title }}</span>
 
-            <div class="flex-grow flex flex-col justify-evenly items-center text-md">
+            <nav class="flex-grow flex flex-col justify-evenly items-center text-md">
                 <span v-for="item in items" :key="item.name">
                     {{ item.name }}
                 </span>
-            </div>
+            </nav>
 
             <div class="pb-24">
                 <div class="w-16 h-px my-12 bg-textSubtle"></div>

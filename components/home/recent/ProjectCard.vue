@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-88 h-88 sm:h-120 sm:flex-none m-5 bg-textBright rounded-lg" :class="alignmentClass">
+    <div class="hover-up max-w-88 h-88 sm:h-120 sm:flex-none m-5 bg-textBright rounded-lg" :class="alignmentClass">
         <img class="h-32 sm:h-auto w-full object-cover rounded-t-lg " :src="image.url" :lt="image.alt">
         <div class="h-56 sm:h-64 px-6 flex flex-col items-center justify-evenly text-sm text-background">
             <span class="mt-2 font-secondary text-accent">#{{ tag }}</span>

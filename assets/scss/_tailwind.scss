@@ -11,6 +11,9 @@
       .hover-bright-right { // CHECK currently not in use
         @apply transition duration-500 transform hover:translate-x-2 hover:text-textBright;
       }
+      .hover-up {
+        @apply transition duration-500 transform hover:-translate-y-2;
+      }
       .hover-accent-subtle {
         @apply transition duration-500 transform hover:-translate-y-0.5 hover:text-accent;
       }
