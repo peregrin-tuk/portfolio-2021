@@ -3,14 +3,14 @@
 
         <!--- SVG Background --->
         <div v-if="isSM">
-            <svg class="absolute bottom-0 transform translate-y-1/2 rhomb text-backgroundAccent stroke-current" width="30vw" height="auto" 
+            <svg class="absolute bottom-0 transform translate-y-1/2 rhomb text-backgroundAccent stroke-current" width="30vw" 
                 viewBox="0 0 426 814" fill="none" xmlns="http://www.w3.org/2000/svg"
             >
                 <path d="M424.5 407L327 170L229.5 407L327 643L424.5 407Z" vector-effect="non-scaling-stroke" />
                 <path d="M349 407L203.5 70.5L58 407L203.5 743L349 407Z" vector-effect="non-scaling-stroke" />
                 <path d="M298.5 407L124.5 1.5L-49.5 407L124.5 812L298.5 407Z" vector-effect="non-scaling-stroke" />
             </svg>
-            <svg class="absolute bottom-0 right-0 transform translate-y-1/2 text-backgroundAccent stroke-current"  width="30vw" height="auto" 
+            <svg class="absolute bottom-0 right-0 transform translate-y-1/2 text-backgroundAccent stroke-current"  width="30vw" 
                 viewBox="0 0 442 917" fill="none" xmlns="http://www.w3.org/2000/svg"
             >
                 <path d="M359 459L292 296.5L225 459L292 620.5L359 459Z" vector-effect="non-scaling-stroke" />
@@ -19,7 +19,7 @@
             </svg>
         </div>
         <div v-else>
-            <svg class="absolute bottom-0 right-0 transform translate-y-1/2  text-backgroundAccent stroke-current" width="28vh" height="auto" 
+            <svg class="absolute bottom-0 right-0 transform translate-y-1/2  text-backgroundAccent stroke-current" width="28vh" 
                 viewBox="0 0 181 587" fill="none" xmlns="http://www.w3.org/2000/svg"
             >
                 <path d="M202.241 294.229L159.444 190.432L116.648 294.229L159.444 397.388L202.241 294.229Z" vector-effect="non-scaling-stroke" />

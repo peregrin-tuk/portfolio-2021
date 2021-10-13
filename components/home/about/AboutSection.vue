@@ -12,14 +12,12 @@ import AboutTextbox from './AboutTextbox.vue'
 
 export default {
     components: { AboutPreviousStops, AboutTextbox },
-    data() {
-        return {
-            content: {}
+    props: {
+        content: {
+            type: Object,
+            required: true
         }
-    },
-    async fetch() {
-        this.content = (await this.$prismic.api.getSingle('about')).data
-    },
+    }
 }
 </script>
 

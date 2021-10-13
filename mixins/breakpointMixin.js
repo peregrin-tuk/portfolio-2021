@@ -24,18 +24,23 @@ export const breakpointMixin = {
         }
     },
     created() {
+        if (process.client) window.addEventListener('resize', this.$checkBreakpoints);
         this.$checkBreakpoints();
-        if (process.client) window.addEventListener('resize', this.$checkBreakpoint);
+    },
+    beforeDestroy() { 
+        if (process.client) window.removeEventListener('resize', this.$checkBreakpoints); 
     },
     methods: {
         $checkBreakpoints() {
-            if (process.client) this.isXS = window.innerWidth >= this.breakpoints.xs
-            if (process.client) this.isSM = window.innerWidth >= this.breakpoints.sm
-            if (process.client) this.isMD = window.innerWidth >= this.breakpoints.md
-            if (process.client) this.isLG = window.innerWidth >= this.breakpoints.lg
-            if (process.client) this.isXL = window.innerWidth >= this.breakpoints.xl
-            if (process.client) this.is2XL = window.innerWidth >= this.breakpoints['2xl'] 
-            if (process.client) this.is3XL = window.innerWidth >= this.breakpoints['3xl']
+            if (process.client) {
+                this.isXS = window.innerWidth >= this.breakpoints.xs
+                this.isSM = window.innerWidth >= this.breakpoints.sm
+                this.isMD = window.innerWidth >= this.breakpoints.md
+                this.isLG = window.innerWidth >= this.breakpoints.lg
+                this.isXL = window.innerWidth >= this.breakpoints.xl
+                this.is2XL = window.innerWidth >= this.breakpoints['2xl'] 
+                this.is3XL = window.innerWidth >= this.breakpoints['3xl']
+            }
         },
     } 
 }
