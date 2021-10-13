@@ -14,8 +14,9 @@
             </div>
         </div>
         <button-action text="let's talk!" />
-        <nuxt-img v-if="content.mountains.url" class="h-40 mt-10 sm:h-auto sm:mt-0 w-full object-cover" 
+        <nuxt-img v-if="content.mountains.url" class="h-40 mt-10 sm:h-auto sm:mt-0 3xl:h-120 w-full object-cover object-top" 
                   :src="content.mountains.url" sizes="xxxxl:100vw xxxl:100vw xxl:100vw xl:100vw lg:100vw md:100vw sm:140vw xs:140vw" fit="cover" />
+        <home-footer :socials="footer.socials" :last_updated="last_updated" />
     </div>
 </template>
 
@@ -32,6 +33,14 @@ export default {
         content: {
             type: Object,
             required: true
+        },
+        footer: {
+            type: Object,
+            required: true
+        },
+        last_updated: {
+            type: String,
+            required: true
         }
     },
     data() {
@@ -41,6 +50,7 @@ export default {
     },
     created() {
         this.getRandomCall()
+        console.log('last_updated', this.last_updated)
     },
     methods: {
         getRandomCall: function() {
