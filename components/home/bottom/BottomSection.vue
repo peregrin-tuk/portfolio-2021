@@ -1,10 +1,11 @@
 <template>
-    <div class="w-full h-screen bg-gradient-bottom flex flex-col justify-start items-center">
+    <div class="w-full h-auto bg-gradient-bottom flex flex-col justify-start items-center relative">
         <img v-if="isXL" class="mt-1 ml-1.5 transform -translate-x-56" src="~/assets/svg/path-desktop.svg" alt="Path">
-        <img v-else-if="isSM" class="mt-1 ml-0.5 transform translate-x-20" src="~/assets/svg/path-tablet.svg" alt="Path">
+        <img v-else-if="isMD" class="mt-1 ml-0.5 transform translate-x-20" src="~/assets/svg/path-tablet.svg" alt="Path">
         <img v-else class="mt-1 transform -translate-x-19" src="~/assets/svg/path-mobile.svg" alt="Path">
-        <div class="my-10 3xl:mb-14 text-h5 sm:text-h4 text-background text-center
+        <div class="mt-10 xl:-mt-20 mb-6 lg:mb-10 text-h5 sm:text-h4 text-background text-center
                     xl:self-start xl:relative xl:left-1/2 xl:transform xl:-translate-x-28 xl:text-left">
+            <nuxt-img v-if="currentCall.icon.url" class="w-9 h-9 object-contain object-center mx-auto relative bottom-14 xl:bottom-0 xl:top-16 xl:-left-66" :src="currentCall.icon.url" />
             <div class="font-light">
                 {{ currentCall.line1 }}
             </div>
@@ -13,6 +14,8 @@
             </div>
         </div>
         <button-action text="let's talk!" />
+        <nuxt-img v-if="content.mountains.url" class="h-40 mt-10 sm:h-auto sm:mt-0 w-full object-cover" 
+                  :src="content.mountains.url" sizes="xxxxl:100vw xxxl:100vw xxl:100vw xl:100vw lg:100vw md:100vw sm:140vw xs:140vw" fit="cover" />
     </div>
 </template>
 
@@ -46,7 +49,7 @@ export default {
     }
 }
 
-// TODO refactor currentCall to computed property?
+// CHECK refactor currentCall to computed property?
 </script>
 
 <style>

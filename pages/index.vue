@@ -28,7 +28,7 @@ export default {
       const header = (await $prismic.api.getSingle('header')).data
       const recent_projects = (await $prismic.api.getSingle('featured_projects', { fetchLinks : ['project.title', 'project.teaser', 'project.tags', 'project.key_image'] })).data
       const about = (await $prismic.api.getSingle('about')).data
-      const bottom = (await $prismic.api.getSingle('contact')).data
+      const bottom = (await $prismic.api.getSingle('bottom')).data
       return { 
         header: header,
         recent_projects: recent_projects,

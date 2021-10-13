@@ -46,6 +46,7 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/style-resources',
     '@nuxtjs/prismic',
+    "@nuxt/image",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -57,6 +58,21 @@ export default {
     // cache: true,
     // parallel: true,
     // hardSource: true,
+  },
+
+  image: {
+    provider: "prismic",
+    prismic: {},
+    screens: {
+      xs: 410,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+      xxxl: 1920,
+      xxxxl: 2560,
+    },
   },
 
   // Prismic configuration
