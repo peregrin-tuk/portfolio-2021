@@ -9,6 +9,7 @@ export default {
                 '3xl': '1920px',
             },
             spacing: {
+                '9.5': '2.375rem',
                 '13': '3.25rem',
                 '19': '4.75rem',
                 '22': '5.5rem',
@@ -30,6 +31,7 @@ export default {
             },
             colors: {
                 background: 'rgba(24, 37, 56, 1)',
+                backgroundSubtle: 'rgba(24, 37, 56, 0.6)',
                 backgroundAccent: 'rgba(54, 74, 104, 1)',
                 backgroundAccent2: 'rgba(66, 91, 128, 1)',
                 backgroundBright: 'rgba(247, 250, 254, 1)',

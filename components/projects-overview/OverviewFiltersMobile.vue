@@ -7,8 +7,8 @@
             <span class="my-14 text-h5 text-background">{{ title }}</span>
 
             <nav class="flex-grow flex flex-col justify-evenly items-center text-md">
-                <span v-for="item in items" :key="item.name">
-                    {{ item.name }}
+                <span v-for="item in items" :key="item">
+                    #{{ item }}
                 </span>
             </nav>
 
