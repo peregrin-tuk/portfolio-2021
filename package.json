@@ -19,7 +19,7 @@
   "devDependencies": {
     "@nuxt/image": "^0.6.0",
     "@nuxtjs/tailwindcss": "^4.2.0",
-    "postcss": "^8.3.9",
+    "postcss": "^8.3.10",
     "sass-loader": "10.1.1"
   }
 }
