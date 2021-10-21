@@ -38,6 +38,9 @@
         <div class="w-20 mt-32 font-secondary text-base lg:text-sm text-textSubtle text-center mx-auto lg:w-full lg:sticky lg:bottom-0 lg:pb-10 lg:pt-4 lg:bg-backgroundBright">home</div>
       </main>
 
+      <!-- Progress Bar --->
+      <progress-bar v-show="isLG" class="sticky top-0" backgroundColor="backgroundBright" color="backgroundAccent" />
+
       <!-- Image -->
       <div v-show="isLG" class="w-full">
         <div class="sticky top-0">
@@ -68,11 +71,12 @@
 <script>
 import OverviewTitleGroup from "../components/projects-overview/OverviewTitleGroup.vue";
 import OverviewFiltersMobile from "../components/projects-overview/OverviewFiltersMobile.vue";
+import ProgressBar from "../components/general/ProgressBar.vue"
 import { breakpointMixin } from "../mixins/breakpointMixin";
 
 export default {
   mixins: [breakpointMixin],
-  components: { OverviewTitleGroup, OverviewFiltersMobile },
+  components: { OverviewTitleGroup, OverviewFiltersMobile, ProgressBar },
   name: "Projects",
   head() {
     return {
