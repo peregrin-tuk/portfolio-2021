@@ -23,7 +23,9 @@
 
         <!-- Project List -->
         <div class="lg:flex lg:flex-col lg:items-center lg:min-h-screen lg:overview-vertical-pos">
-          <overview-title-group v-for="project in projects" :key="project.uid" class="mb-16 sm:mb-20 md:mb-32 xl:mb-42 3xl:mb-56"
+          <overview-title-group v-for="(project, index) in projects" :key="project.uid" 
+            class="mb-16 sm:mb-20 md:mb-32 xl:mb-42 3xl:mb-56 transition duration-300"
+            :class="{ 'opacity-20': index != activeProjectIndex }"
             :title="project.data.title"
             :teaser="project.data.teaser"
             :tags="project.data.tags"
@@ -31,6 +33,8 @@
             :date="project.data.date"
             :image="project.data.key_image"
             :uid="project.uid"
+            :data-index="index"
+            :observer="scrollObserver"
           />
         </div>
 
@@ -43,10 +47,16 @@
 
       <!-- Image -->
       <div v-show="isLG" class="w-full">
-        <div class="sticky top-0">
-          <nuxt-img class="h-screen w-full object-cover object-center" 
-            :src="activeProject.data.key_image.url" :alt="activeProject.data.key_image.alt"
-            sizes="" fit="cover" />
+        <div class="sticky top-0 bg-background">
+          <transition name="fade" mode="out-in">
+            <nuxt-img 
+              class="h-screen w-full object-cover object-center" 
+              :src="projects[activeProjectIndex].data.key_image.url" 
+              :key="projects[activeProjectIndex].data.key_image.url"
+              :alt="projects[activeProjectIndex].data.key_image.alt"
+              sizes="" 
+              fit="cover" />
+          </transition>
           <div class="absolute top-1/2 right-8 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
             <svg class="" width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 9.5h18.333M12.833 2l7.5 7.5M12.833 17l7.5-7.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -69,15 +79,15 @@
 </template>
 
 <script>
-import OverviewTitleGroup from "../components/projects-overview/OverviewTitleGroup.vue";
-import OverviewFiltersMobile from "../components/projects-overview/OverviewFiltersMobile.vue";
-import ProgressBar from "../components/general/ProgressBar.vue"
-import { breakpointMixin } from "../mixins/breakpointMixin";
+import OverviewTitleGroup from "~/components/projects-overview/OverviewTitleGroup.vue";
+import OverviewFiltersMobile from "~/components/projects-overview/OverviewFiltersMobile.vue";
+import ProgressBar from "~/components/general/ProgressBar.vue"
+import { breakpointMixin } from "~/mixins/breakpointMixin";
 
 export default {
-  mixins: [breakpointMixin],
-  components: { OverviewTitleGroup, OverviewFiltersMobile, ProgressBar },
   name: "Projects",
+  components: { OverviewTitleGroup, OverviewFiltersMobile, ProgressBar },
+  mixins: [breakpointMixin],
   head() {
     return {
       title: "Valleyhammer | Portfolio",
@@ -85,7 +95,9 @@ export default {
   },
   data() {
     return {
-      showFilterModal: false
+      showFilterModal: false,
+      scrollObserver: null,
+      activeProjectIndex: 0,
     };
   },
   methods: {
@@ -95,6 +107,31 @@ export default {
     closeFilterModal() {
       this.showFilterModal = false;
     },
+    onElementObserved(entries) {
+      entries.forEach(({ target, isIntersecting}) => {
+        if (isIntersecting) {
+          const lastTarget = document.querySelector("[data-index='" + this.activeProjectIndex + "']")
+          lastTarget.classList.add("opacity-20")
+          
+          target.classList.remove("opacity-20")
+          this.activeProjectIndex = target.getAttribute("data-index")
+
+          console.debug('Project ' + this.activeProjectIndex + ' is intersecting')
+        }
+      });
+    }
+  },
+  created() {
+    if (process.client) {
+      this.scrollObserver = new IntersectionObserver(
+        this.onElementObserved, 
+        {
+          rootMargin: '-30% 0px',
+          threshold: 1.0,
+        }
+      );
+      console.debug("created observer")
+    }
   },
   async asyncData({ $prismic, error }) {
     try {
@@ -120,8 +157,7 @@ export default {
 
       return {
         projects: projects,
-        tagFilters: tagFilters,
-        activeProject: projects[0]
+        tagFilters: tagFilters
       };
     } catch (e) {
       error({ statusCode: 404, message: "Content could not be loaded" });
@@ -130,3 +166,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .15s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+</style>

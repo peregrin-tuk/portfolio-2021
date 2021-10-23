@@ -8,7 +8,12 @@
 
 <script>
 export default {
-
+    props: {
+        slice: {
+            type: Object,
+            required: true 
+        },
+    }
 }
 </script>
 

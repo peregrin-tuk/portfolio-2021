@@ -53,11 +53,22 @@ export default {
         uid: {
             type: String,
             required: true
-        }
+        },
+        observer: {
+            // note: no typecheck due to server side rendering not knowing IntersectionObserver
+            required: false
+        },
     },
     computed: {
         year() {
             return "'" + this.date.substring(2,4)
+        }
+    },
+    mounted() {
+        console.debug('mounted observable element')
+        if (this.observer != null) { 
+            this.observer.observe(this.$el)
+            console.debug("observer observs element")
         }
     }
 }
