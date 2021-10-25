@@ -65,10 +65,8 @@ export default {
         }
     },
     mounted() {
-        console.debug('mounted observable element')
         if (this.observer != null) { 
             this.observer.observe(this.$el)
-            console.debug("observer observs element")
         }
     }
 }

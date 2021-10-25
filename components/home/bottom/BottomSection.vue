@@ -50,7 +50,6 @@ export default {
     },
     created() {
         this.getRandomCall()
-        console.log('last_updated', this.last_updated)
     },
     methods: {
         getRandomCall: function() {

@@ -41,7 +41,7 @@
         </div>
 
         <!-- Home Link -->
-        <div class="w-20 mt-32 font-secondary text-base lg:text-sm text-textSubtle text-center mx-auto lg:w-full lg:sticky lg:bottom-0 lg:pb-10 lg:pt-4 lg:bg-backgroundBright">home</div>
+        <div class="w-20 mt-32 font-secondary text-base lg:text-sm text-textSubtle text-center mx-auto lg:w-full lg:sticky lg:bottom-0 lg:pb-10 lg:pt-4 lg:bg-backgroundBright"><NuxtLink to="/">home</NuxtLink></div>
       </main>
 
       <!-- Progress Bar --->
@@ -117,8 +117,6 @@ export default {
           
           target.classList.remove("opacity-20")
           this.activeProjectIndex = target.getAttribute("data-index")
-
-          console.debug('Project ' + this.activeProjectIndex + ' is intersecting')
         }
       });
     }
@@ -132,7 +130,6 @@ export default {
           threshold: 1.0,
         }
       );
-      console.debug("created observer")
     }
   },
   async asyncData({ $prismic, error }) {

@@ -26,7 +26,6 @@ export default {
   computed: {
     formated_last_updated: function() {
       const date = new Date(this.last_updated)
-      console.debug('socials', this.socials)
       return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric'})
     }
   }

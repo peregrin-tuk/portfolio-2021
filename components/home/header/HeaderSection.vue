@@ -34,7 +34,7 @@
             
             <div v-if="isSM">
                 <nav class="flex justify-end font-secondary text-sm">
-                    <span v-for="item in desktopNavContent" :key="item.name" class="hover-accent-subtle ml-14">{{ item.name }}</span>
+                    <NuxtLink v-for="item in desktopNavContent" :key="item.name" :to="item.link" class="hover-accent-subtle ml-14">{{ item.name }}</NuxtLink>
                 </nav>
             </div>
             <div v-else>
@@ -55,31 +55,31 @@
         <!--- Actions --->
         <div v-if="isSM">
             <div class="actions absolute w-full flex justify-center items-center">
-                <div class="p-4 pb-0 w-72 flex justify-end text-textSubtle hover-bright-up">
+                <NuxtLink to="#recent-projects" class="p-4 pb-0 w-72 flex justify-end text-textSubtle hover-bright-up">
                     <img class="w-9" src="~/assets/svg/quick-icon.svg" alt="Stopwatch Icon">
                     <div class="action-left font-secondary text-sm ml-4 text-right">
                         <prismic-rich-text :field="content.quick_text_desktop" :htmlSerializer="secondarySerializer" />
                     </div>
-                </div>
+                </NuxtLink>
                 <div class="w-px h-24 bg-accent"></div>
-                <div class="p-4 w-72 flex justify-start text-textSubtle hover-bright-up">
+                <NuxtLink to="/projects"  class="p-4 w-72 flex justify-start text-textSubtle hover-bright-up">
                     <div class="font-secondary text-sm w-48 mr-4">
                         <prismic-rich-text :field="content.book_text_desktop" :htmlSerializer="secondarySerializer" />
                     </div>
                     <img class="w-9" src="~/assets/svg/book-icon.svg" alt="Telescope Icon">
-                </div>
+                </NuxtLink>
             </div>
         </div>
         <div v-else>
             <div class="absolute bottom-12 mx-12 border-l border-accent flex flex-col font-secondary text-textSubtle text-sm">
-                <div class="p-4 pb-0 flex items-center">
+                <NuxtLink to="#recent-projects" class="p-4 pb-0 flex items-center">
                     <img width="26" height="26" src="~/assets/svg/quick-icon.svg" alt="Stopwatch Icon">
                     <span class="ml-4">{{ content.quick_text_mobile }}</span>
-                </div>
-                <div class="p-4 flex items-center">
+                </NuxtLink>
+                <NuxtLink to="/projects" class="p-4 flex items-center">
                     <img width="26" height="26" src="~/assets/svg/book-icon.svg" alt="Telescope Icon">
                     <span class="ml-4">{{ content.book_text_mobile }}</span>
-                </div>
+                </NuxtLink>
             </div>
         </div>
 
@@ -110,18 +110,49 @@ export default {
             mobileNavContent: {
                 title: 'VALLEYHAMMER.AT',
                 items: [
-                    { name: 'home'},
-                    { name: 'recent projects'},
-                    { name: 'about me'},
-                    { name: ''},
-                    { name: 'all projects'}
+                    { 
+                        name: 'home',
+                        link: '/'
+                    },
+                    { 
+                        name: 'recent projects',
+                        link: '#recent-projects'
+                    },
+                    { 
+                        name: 'about me',
+                        link: '#about'
+
+                    },
+                    { 
+                        name: '',
+                        link: '#'
+                    },
+                    { 
+                        name: 'all projects',
+                        link: '/projects'
+                    }
                 ],
-                footer: { name: 'content'}
+                footer: 
+                    { 
+                        name: 'contact',
+                        link: '#'
+                    }
             },
             desktopNavContent: [
-                { name: 'projects'},
-                { name: 'about'},
-                { name: 'content'},
+                { 
+                    name: 'projects',
+                    link: '#recent-projects'
+                },
+                { 
+                    name: 'about',
+                    link: '#about'
+
+                },
+                { 
+                    name: 'contact',
+                    link: '#'
+
+                },
             ]
         }
     },
