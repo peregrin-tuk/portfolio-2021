@@ -1,7 +1,7 @@
 <template>
     <figure class="my-8">
         <nuxt-img 
-            class="w-full h-auto" 
+            class="w-full h-auto bg-textSubtle" 
             :src="slice.primary.image.url" 
             :key="slice.primary.image.url"
             :alt="slice.primary.caption"

@@ -1,7 +1,7 @@
 <template>
     <figure class="my-8">
         <prismic-embed 
-            class="embed-container relative w-full h-0 pb-2/3 mx-auto"
+            class="embed-container relative w-full h-0 pb-2/3 mx-auto bg-textSubtle"
             width="100%"
             height="auto"
             :field="slice.primary.embed" />

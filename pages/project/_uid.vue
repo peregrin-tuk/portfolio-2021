@@ -14,7 +14,7 @@
               fit="cover" />
           </transition>
           <div class="absolute top-1/2 left-8 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
-          <a href="" @click.prevent="window.history.length > 1 ? $router.back() : this.$router.push('/projects')">
+          <a href="" @click.prevent="from == '/' || from == '/projects' ? $router.back() : $router.push('/projects')">
             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14.964 14.964 2 2M14.964 2 2 14.964" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -38,6 +38,7 @@
           :tools="tools"
           :collaborators="collaborators"
           :additional_information="additional_information"
+          :slices="slices"
         />
         <project-article
         class="max-w-xl"
@@ -68,6 +69,11 @@ export default {
   head () {
     return {
       title: 'Valleyhammer | Portfolio',
+    }
+  },
+  computed: {
+    from: function() {
+      return this.$nuxt.context.from ? this.$nuxt.context.from.path : ''
     }
   },
   async asyncData({ $prismic, params, error }) {
