@@ -14,9 +14,11 @@
               fit="cover" />
           </transition>
           <div class="absolute top-1/2 left-8 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
+          <a href="" @click.prevent="window.history.length > 1 ? $router.back() : this.$router.push('/projects')">
             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14.964 14.964 2 2M14.964 2 2 14.964" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
+          </a>
           </div>
         </div>
       </div>
@@ -25,7 +27,7 @@
       <progress-bar v-show="isLG" class="sticky top-0" backgroundColor="backgroundBright" color="backgroundAccent" />
 
       <!-- Project Article -->
-      <main class="w-screen h-full min-h-screen flex flex-col justify-between p-8 sm:px-20 md:px-36 md:py-12 lg:w-full lg:p-12 bg-backgroundBright ">
+      <main class="w-screen h-full min-h-screen flex flex-col justify-between p-8 sm:px-20 md:px-36 md:py-12 lg:w-full lg:p-32 lg:pb-16 3xl:px-52 bg-backgroundBright ">
         <project-header 
           :title="title"
           :teaser="teaser"
@@ -38,15 +40,16 @@
           :additional_information="additional_information"
         />
         <project-article
+        class="max-w-xl"
           :slices="slices"
         />
         
 
         <!-- Footer Links -->
         <nav class="w-full flex justify-between mt-20 font-secondary text-base lg:text-sm text-textSubtle text-center">
-          <span>projects</span>
-          <span>home</span>
-          <span>contact</span>
+          <NuxtLink to="/projects">projects</NuxtLink>
+          <NuxtLink to="/">home</NuxtLink>
+          <NuxtLink to="/">contact</NuxtLink>
         </nav>
       </main>
     </div>

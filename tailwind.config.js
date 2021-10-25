@@ -56,7 +56,8 @@ export default {
             'base': '1rem',	      // 16px (only mobile text)
             'md':   '1.125rem',   // 18px
             'lg':   '1.25rem',	  // 20px
-            'h5':   '1.5rem',	  // 24px (only mobile call and overlays)
+            'h6':   '1.5rem',	  // 24px (only mobile call and overlays)
+            'h5':   '1.75rem',	  // 28px (only article subheadings)
             'h4':   '2rem',	      // 32px
             'h3':   '2.25rem',    // 36px
             'h2':   '2.5rem',	  // 40px

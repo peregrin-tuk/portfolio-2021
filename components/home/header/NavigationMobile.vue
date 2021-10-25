@@ -4,7 +4,7 @@
             <svg @click="$emit('close')" class="mt-9 text-background stroke-current" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="m1.354.646 28.284 28.285M.646 28.931 28.931.646"/>
             </svg>
-            <span class="my-14 text-h5 text-background">{{ title }}</span>
+            <span class="my-14 text-h6 text-background">{{ title }}</span>
 
             <nav class="flex-grow flex flex-col justify-evenly items-center text-md">
                 <span v-for="item in items" :key="item.name">

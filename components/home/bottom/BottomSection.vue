@@ -3,7 +3,7 @@
         <img v-if="isXL" class="mt-1 ml-1.5 transform -translate-x-56" src="~/assets/svg/path-desktop.svg" alt="Path">
         <img v-else-if="isMD" class="mt-1 ml-0.5 transform translate-x-20" src="~/assets/svg/path-tablet.svg" alt="Path">
         <img v-else class="mt-1 transform -translate-x-19" src="~/assets/svg/path-mobile.svg" alt="Path">
-        <div class="mt-10 xl:-mt-20 mb-6 lg:mb-10 text-h5 sm:text-h4 text-background text-center
+        <div class="mt-10 xl:-mt-20 mb-6 lg:mb-10 text-h6 sm:text-h4 text-background text-center
                     xl:self-start xl:relative xl:left-1/2 xl:transform xl:-translate-x-28 xl:text-left">
             <nuxt-img v-if="currentCall.icon.url" class="w-9 h-9 object-contain object-center mx-auto relative bottom-14 xl:bottom-0 xl:top-16 xl:-left-66" :src="currentCall.icon.url" />
             <div class="font-light">

@@ -1,4 +1,3 @@
-// TODO change defaults to match modeled content
 
 export default function (doc) {
     if (doc.isBroken) {

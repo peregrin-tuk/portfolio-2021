@@ -5,6 +5,7 @@ const Elements = prismicDOM.RichText.Elements;
 
 export default function (type, element, content, children) {
 
+  // LINK
   // Generate links to Prismic Documents as <router-link> components
   // Present by default, it is recommended to keep this
   if (type === Elements.hyperlink) {
@@ -22,6 +23,7 @@ export default function (type, element, content, children) {
     return result;
   }
 
+  // IMAGE
   // If the image is also a link to a Prismic Document, it will return a <router-link> component
   // Present by default, it is recommended to keep this
   if (type === Elements.image) {
@@ -46,16 +48,40 @@ export default function (type, element, content, children) {
     return result;
   }
 
-  // CHECK what types of elements we have in rich text adapt those serializers to design (e.g. font weight for bold etc.), most likely, defaults are good
-  if (type === Elements.heading2) {
-    var id = element.text.replace(/\W+/g, "-").toLowerCase();
-    return '<h2 id="' + id + '">' + children.join("") + "</h2>";
+  // EMBED
+  if (type === Elements.embed) {
+    return (`
+      <div data-oembed="${element.oembed.embed_url}"
+        data-oembed-type="${element.oembed.type}"
+        data-oembed-provider="${element.oembed.provider_name}"
+      >
+        ${element.oembed.html}
+      </div>
+    `);
   }
 
-  if (type === Elements.heading3) {
-    var id = element.text.replace(/\W+/g, "-").toLowerCase();
-    return '<h3 id="' + id + '">' + children.join("") + "</h3>";
+  // PARAGRAPHS, HEADINGS, LISTS
+  if (type === Elements.paragraph) {
+    return '<p class="font-serif text-base lg:text-sm text-justify tracking-wide leading-6">' + children.join("") + "</p>";
   }
+
+  if (type === Elements.heading2) {
+    var id = element.text.replace(/\W+/g, "-").toLowerCase();
+    return '<h2 class="text-h5 text-background text-center capitalize mt-8 mb-3" id="' + id + '">' + children.join("") + "</h2>";
+  }
+
+  if (type === Elements.list) {
+    return `<ul class="py-4 ml-4">${children.join('')}</ul>`;
+  }
+
+  if (type === Elements.oList) {
+    return `<ol class="py-4 ml-4">${children.join('')}</ol>`;
+  }
+
+  if (type === Elements.listItem) {
+    return '<li class="list-inside font-serif text-base lg:text-sm tracking-wide leading-6">' + children.join("") + "</li>";
+  }
+
 
   // Return null to stick with the default behavior for everything else
   return null;

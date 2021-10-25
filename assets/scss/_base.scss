@@ -1,4 +1,8 @@
 // CHECK could also go to custom tailwind components
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 /* Backgrounds & Gradients */
 .bg-gradient {
@@ -9,4 +13,13 @@
 }
 .bg-gradient-bottom {
     background: linear-gradient(to bottom, #F5B9A3 0%, #FFDFD4 100%);
+}
+
+/* List Elements */
+li::before {
+    content: "»";
+    color: rgba(255, 69, 76, 1);
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
 }

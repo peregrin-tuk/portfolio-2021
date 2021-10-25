@@ -5,7 +5,9 @@
       <main class="bg-backgroundBright w-screen h-full min-h-screen flex-none p-8 sm:px-20 md:px-36 md:py-12 lg:w-2/3 2xl:w-1/2 lg:px-12 lg:py-0">
         <!--- Logo & Filters --->
         <div class="w-full mb-16 px-4 flex justify-between items-center text-textSubtle text-sm font-secondary lg:sticky lg:top-0 lg:pt-10 lg:pb-4 lg:bg-backgroundBright">
-          <div class="w-14">V</div>
+          <div class="w-14">
+            <NuxtLink to="/">V</NuxtLink>
+          </div>
 
           <div v-if="isMD">
             <nav class="flex">
@@ -25,7 +27,7 @@
         <div class="lg:flex lg:flex-col lg:items-center lg:min-h-screen lg:overview-vertical-pos">
           <overview-title-group v-for="(project, index) in projects" :key="project.uid" 
             class="mb-16 sm:mb-20 md:mb-32 xl:mb-42 3xl:mb-56 transition duration-300"
-            :class="{ 'opacity-20': index != activeProjectIndex }"
+            :class="{ 'opacity-20': isLG && index != activeProjectIndex }"
             :title="project.data.title"
             :teaser="project.data.teaser"
             :tags="project.data.tags"
