@@ -11,7 +11,10 @@
 
           <div v-if="isMD">
             <nav class="flex">
-              <span v-for="tag in tagFilters" :key="tag" class="hover-accent-subtle mr-4">#{{ tag }}</span>
+              <span v-for="tag in tagFilters" :key="tag" @click="toggleFilter(tag)" 
+              class="hover-accent-subtle mr-4 cursor-pointer" :class="{ 'text-accent': activeFilters.has(tag) }">
+                #{{ tag }}
+              </span>
             </nav>
           </div>
           <div v-else class="px-8" @click="openFilterModal">
@@ -20,12 +23,12 @@
             </svg>
           </div>
 
-          <div class="w-14">show all</div>
+          <div class="w-14 cursor-pointer" @click="resetFilters">show all</div>
         </div>
 
         <!-- Project List -->
         <div class="lg:flex lg:flex-col lg:items-center lg:min-h-screen lg:overview-vertical-pos">
-          <NuxtLink  v-for="(project, index) in projects" :key="project.uid" :to="'/project/' + project.uid">
+          <NuxtLink  v-for="(project, index) in filteredProjects" :key="project.uid" :to="'/project/' + project.uid">
             <overview-title-group
               class="mb-16 sm:mb-20 md:mb-32 xl:mb-42 3xl:mb-56 transition duration-300"
               :class="{ 'opacity-20': isLG && index != activeProjectIndex }"
@@ -103,10 +106,37 @@ export default {
     return {
       showFilterModal: false,
       scrollObserver: null,
+      activeFilters: new Set(),
       activeProjectIndex: 0,
     };
   },
+  computed: {
+    filteredProjects: function() {
+      if (this.activeFilters.size == 0) {
+        console.debug('showing all projects')
+        return this.projects
+      }
+
+      return this.projects.filter((project) => {
+        console.debug('filtering')
+        project.tags.some(tag => this.activeFilters.includes(tag))
+      })
+    }
+  },
   methods: {
+    toggleFilter(filter) {
+      if (this.activeFilters.has(filter)) {
+        this.activeFilters.delete(filter)
+      } else {
+        this.activeFilters.add(filter);
+      }
+
+      console.debug('active filters', this.activeFilters)
+      console.debug('filtered projects', this.filteredProjects)
+    },
+    resetFilters() {
+      this.activeFilters = new Set();
+    },
     openFilterModal() {
       this.showFilterModal = true;
     },
@@ -157,8 +187,6 @@ export default {
 
       const tagFiltersArray = projects.map((el) => el.data.tags.map((el) => el.tag)).flat();
       const tagFilters = Array.from(new Set(tagFiltersArray));
-
-      console.debug('PROJECTs', projects)
 
       return {
         projects: projects,
