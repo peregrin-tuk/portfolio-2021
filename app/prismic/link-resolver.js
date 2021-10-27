@@ -9,8 +9,12 @@ export default function (doc) {
     }
 
     if (doc.type === 'projects') {
-        return '/projects';
-      }
+      return '/projects';
+    }
+
+    if (doc.type === 'contact') {
+      return '/contact';
+    }
   
     if (doc.type === 'project') {
       return '/project/' + doc.uid;

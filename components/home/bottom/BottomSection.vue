@@ -13,7 +13,7 @@
                 {{ currentCall.line2 }}
             </div>
         </div>
-        <button-action text="let's talk!" />
+        <NuxtLink to="/contact"><button-action text="let's talk!" /></NuxtLink>
         <nuxt-img v-if="content.mountains.url" class="h-40 mt-10 sm:h-auto sm:mt-0 3xl:h-120 w-full object-cover object-top" 
                   :src="content.mountains.url" sizes="xxxxl:100vw xxxl:100vw xxl:100vw xl:100vw lg:100vw md:100vw sm:140vw xs:140vw" fit="cover" />
         <home-footer :socials="footer.socials" :last_updated="last_updated" />

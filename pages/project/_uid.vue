@@ -27,7 +27,7 @@
       <progress-bar v-show="isLG" class="sticky top-0" backgroundColor="backgroundBright" color="backgroundAccent" />
 
       <!-- Project Article -->
-      <main class="w-screen h-full min-h-screen flex flex-col justify-between p-8 sm:px-20 md:px-36 md:py-12 lg:w-full lg:p-32 lg:pb-16 3xl:px-52 bg-backgroundBright ">
+      <main class="w-screen h-full min-h-screen flex flex-col justify-between items-center p-8 sm:px-20 md:px-36 md:py-12 lg:w-full lg:p-32 lg:pb-16 3xl:px-52 bg-backgroundBright ">
         <project-header 
           :title="title"
           :teaser="teaser"
@@ -50,9 +50,11 @@
         <nav class="w-full flex justify-between mt-20 font-secondary text-base lg:text-sm text-textSubtle text-center">
           <NuxtLink to="/projects">projects</NuxtLink>
           <NuxtLink to="/">home</NuxtLink>
-          <NuxtLink to="/">contact</NuxtLink>
+          <NuxtLink to="/contact">contact</NuxtLink>
         </nav>
       </main>
+
+      <contact-modal :active="showContactModal" @close="closeContactModal" :content="contact" />
     </div>
 </template>
 
@@ -60,15 +62,21 @@
 import ProgressBar from "~/components/general/ProgressBar.vue"
 import ProjectHeader from "~/components/project-page/ProjectHeader.vue"
 import ProjectArticle from "~/components/project-page/ProjectArticle.vue"
+import ContactModal from '~/components/contact/ContactModal.vue'
 import { breakpointMixin } from "~/mixins/breakpointMixin";
 
 export default {
   name: 'project-page',
-  components: { ProgressBar, ProjectHeader, ProjectArticle },
+  components: { ProgressBar, ProjectHeader, ProjectArticle, ContactModal },
   mixins: [breakpointMixin],
   head () {
     return {
-      title: 'Valleyhammer | Portfolio',
+      title: 'Valleyhammer | ' + this.title,
+    }
+  },
+  data() {
+    return {
+      showContactModal: false,
     }
   },
   computed: {
@@ -76,9 +84,28 @@ export default {
       return this.$nuxt.context.from ? this.$nuxt.context.from.path : ''
     }
   },
+  methods: {
+    openContactModal() {
+      this.showContactModal = true;
+      window.history.pushState({}, null, '/contact')
+    },
+    closeContactModal() {
+      this.showContactModal = false;
+      window.history.pushState({}, null, this.$route.path)
+    },
+  },
+  beforeRouteLeave(to, from, next) {
+    if (to.path === "/contact") {
+      this.openContactModal();
+    } else {
+      next();
+    }
+  },
   async asyncData({ $prismic, params, error }) {
     try{
       const project = (await $prismic.api.getByUID('project', params.uid)).data
+      const contact = (await $prismic.api.getSingle('contact')).data
+
       return {
         title: project.title,
         teaser: project.teaser,
@@ -90,7 +117,8 @@ export default {
         collaborators: project.collaborators,
         additional_information: project.additional_information,
         key_image: project.key_image,
-        slices: project.body
+        slices: project.body,
+        contact: contact,
       }
     } catch (e) {
       error({ statusCode: 404, message: 'Content could not be loaded' })

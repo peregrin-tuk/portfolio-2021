@@ -135,7 +135,7 @@ export default {
                 footer: 
                     { 
                         name: 'contact',
-                        link: '#'
+                        link: '/contact'
                     }
             },
             desktopNavContent: [
@@ -150,7 +150,7 @@ export default {
                 },
                 { 
                     name: 'contact',
-                    link: '#'
+                    link: '/contact'
 
                 },
             ]
@@ -182,12 +182,5 @@ export default {
 }
 .action-left {
     width: 9.5rem;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
 }
 </style>

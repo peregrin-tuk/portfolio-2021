@@ -18,6 +18,7 @@ export default {
                 '92': '23rem',
                 '104': '26rem',
                 '120': '30rem',
+                '136': '34rem',
                 '184': '46rem',
                 '192': '48rem',
                 '244': '61rem',
@@ -66,7 +67,8 @@ export default {
             'xxl':  '9rem',	      // 144px
         }
     },
-    variants: {},
+    variants: {
+    },
     plugins: [
         plugin(function({ addBase, theme }) {
             addBase({

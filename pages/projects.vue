@@ -25,19 +25,21 @@
 
         <!-- Project List -->
         <div class="lg:flex lg:flex-col lg:items-center lg:min-h-screen lg:overview-vertical-pos">
-          <overview-title-group v-for="(project, index) in projects" :key="project.uid" 
-            class="mb-16 sm:mb-20 md:mb-32 xl:mb-42 3xl:mb-56 transition duration-300"
-            :class="{ 'opacity-20': isLG && index != activeProjectIndex }"
-            :title="project.data.title"
-            :teaser="project.data.teaser"
-            :tags="project.data.tags"
-            :tools="project.data.tools"
-            :date="project.data.date"
-            :image="project.data.key_image"
-            :uid="project.uid"
-            :data-index="index"
-            :observer="scrollObserver"
-          />
+          <NuxtLink  v-for="(project, index) in projects" :key="project.uid" :to="'/project/' + project.uid">
+            <overview-title-group
+              class="mb-16 sm:mb-20 md:mb-32 xl:mb-42 3xl:mb-56 transition duration-300"
+              :class="{ 'opacity-20': isLG && index != activeProjectIndex }"
+              :title="project.data.title"
+              :teaser="project.data.teaser"
+              :tags="project.data.tags"
+              :tools="project.data.tools"
+              :date="project.data.date"
+              :image="project.data.key_image"
+              :uid="project.uid"
+              :data-index="index"
+              :observer="scrollObserver"
+            />
+          </NuxtLink>
         </div>
 
         <!-- Home Link -->
@@ -51,6 +53,7 @@
       <div v-show="isLG" class="w-full">
         <div class="sticky top-0 bg-background">
           <transition name="fade" mode="out-in">
+            <NuxtLink :to="'/project/' + projects[activeProjectIndex].uid">
             <nuxt-img 
               class="h-screen w-full object-cover object-center" 
               :src="projects[activeProjectIndex].data.key_image.url" 
@@ -58,6 +61,7 @@
               :alt="projects[activeProjectIndex].data.key_image.alt"
               sizes="" 
               fit="cover" />
+            </NuxtLink>
           </transition>
           <div class="absolute top-1/2 right-8 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
             <svg class="" width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -153,6 +157,8 @@ export default {
 
       const tagFiltersArray = projects.map((el) => el.data.tags.map((el) => el.tag)).flat();
       const tagFilters = Array.from(new Set(tagFiltersArray));
+
+      console.debug('PROJECTs', projects)
 
       return {
         projects: projects,
