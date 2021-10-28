@@ -6,8 +6,8 @@
         <h2 class="text-h1 font-sans font-bold tracking-wide">{{ title }}</h2>
         <div class="tracking-wide mt-1 mb-4">{{ teaser }}</div>
         <div class="text-textSubtle text-xxs lowercase">
-            <div class="flex flex-wrap justify-center gap-2">
-                <span v-for="tool in tools" :key="tool">{{ tool }} </span>
+            <div class="flex flex-wrap items-center justify-center gap-2">
+                <ToolIcon v-for="tool in tools" :key="tool" :name="tool" />
                 <span>·</span>
                 <span>{{ year }}</span>
                 <span>·</span>
@@ -29,7 +29,11 @@
 </template>
 
 <script>
+import ToolIcon from '~/components/general/ToolIcon.vue'
+
+
 export default {
+    components: { ToolIcon },
     props: {
         title: {
             type: String,

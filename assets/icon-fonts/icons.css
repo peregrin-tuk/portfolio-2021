@@ -1,0 +1,131 @@
+@font-face {
+  font-family: 'tools';
+  src:  url('tools.eot?o8q7n1');
+  src:  url('tools.eot?o8q7n1#iefix') format('embedded-opentype'),
+    url('tools.ttf?o8q7n1') format('truetype'),
+    url('tools.woff?o8q7n1') format('woff'),
+    url('tools.svg?o8q7n1#tools') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="toolicon-"], [class*=" toolicon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'tools' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.toolicon-max-msp:before {
+  content: "\e90e";
+}
+.toolicon-processing:before {
+  content: "\e90f";
+}
+.toolicon-webrtc:before {
+  content: "\e910";
+}
+.toolicon-firebase:before {
+  content: "\e900";
+}
+.toolicon-jupyter:before {
+  content: "\e901";
+}
+.toolicon-laravel:before {
+  content: "\e902";
+}
+.toolicon-node-dot-js:before {
+  content: "\e903";
+}
+.toolicon-npm:before {
+  content: "\e904";
+}
+.toolicon-python:before {
+  content: "\e905";
+}
+.toolicon-sass:before {
+  content: "\e906";
+}
+.toolicon-javascript:before {
+  content: "\e907";
+}
+.toolicon-typescript:before {
+  content: "\e908";
+}
+.toolicon-nuxt-dot-js:before {
+  content: "\e909";
+}
+.toolicon-angular:before {
+  content: "\e90a";
+}
+.toolicon-react:before {
+  content: "\e90b";
+}
+.toolicon-vue-dot-js:before {
+  content: "\e90c";
+}
+.toolicon-unity:before {
+  content: "\e90d";
+}
+
+/* Colors */
+.toolicon-max-msp:hover:before {
+  color: #111;
+}
+.toolicon-processing:hover:before {
+  color: #0468ff;
+}
+.toolicon-webrtc:hover:before {
+  color: #f60;
+}
+.toolicon-firebase:hover:before {
+  color: #ffca28;
+}
+.toolicon-jupyter:hover:before {
+  color: #f37626;
+}
+.toolicon-laravel:hover:before {
+  color: #ff2d20;
+}
+.toolicon-node-dot-js:hover:before {
+  color: #393;
+}
+.toolicon-npm:hover:before {
+  color: #cb3837;
+}
+.toolicon-python:hover:before {
+  color: #3776ab;
+}
+.toolicon-sass:hover:before {
+  color: #c69;
+}
+.toolicon-javascript:hover:before {
+  color: #f7df1e;
+}
+.toolicon-typescript:hover:before {
+  color: #007acc;
+}
+.toolicon-nuxt-dot-js:hover:before {
+  color: #00c58e;
+}
+.toolicon-angular:hover:before {
+  color: #dd0031;
+}
+.toolicon-react:hover:before {
+  color: #61dafb;
+}
+.toolicon-vue-dot-js:hover:before {
+  color: #4fc08d;
+}
+.toolicon-unity:hover:before {
+  color: #111;
+}

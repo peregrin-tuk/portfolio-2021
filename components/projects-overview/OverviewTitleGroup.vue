@@ -11,8 +11,8 @@
             </div>
             <h2 class="text-h3 xs:text-h2 font-sans font-bold tracking-wide">{{ title }}</h2>
             <div class="tracking-wide">{{ teaser }}</div>
-            <div class="text-textSubtle mt-4">
-                <span v-for="tool in tools" :key="tool.tool">{{ tool.tool }} </span>
+            <div class="text-textSubtle mt-4 flex flex-start gap-2">
+                <ToolIcon v-for="tool in tools" :key="tool.tool" :name="tool.tool" />
             </div>
         </div>
     </div>
@@ -22,9 +22,11 @@
 
 <script>
 import { breakpointMixin } from '../../mixins/breakpointMixin'
+import ToolIcon from '~/components/general/ToolIcon.vue'
 
 export default {
     mixins: [ breakpointMixin ],
+    components: { ToolIcon },
     props: {
         title: {
             type: String,
