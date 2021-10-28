@@ -12,7 +12,7 @@
           <div v-if="isMD">
             <nav class="flex">
               <span v-for="tag in tagFilters" :key="tag" @click="toggleFilter(tag)" 
-              class="hover-accent-subtle mr-4 cursor-pointer" :class="{ 'text-accent': activeFilters.has(tag) }">
+              class="hover-accent-subtle mr-4 cursor-pointer" :class="{ 'text-accent': activeFilters.includes(tag) }">
                 #{{ tag }}
               </span>
             </nav>
@@ -23,15 +23,15 @@
             </svg>
           </div>
 
-          <div class="w-14 cursor-pointer" @click="resetFilters">show all</div>
+          <div class="w-14 cursor-pointer" @click="resetFilters" :class="{ 'invisible': activeFilters.length }">show all</div>
         </div>
 
         <!-- Project List -->
         <div class="lg:flex lg:flex-col lg:items-center lg:min-h-screen lg:overview-vertical-pos">
-          <NuxtLink  v-for="(project, index) in filteredProjects" :key="project.uid" :to="'/project/' + project.uid">
+          <NuxtLink  v-for="project in filteredProjects" :key="project.uid" :to="'/project/' + project.uid">
             <overview-title-group
               class="mb-16 sm:mb-20 md:mb-32 xl:mb-42 3xl:mb-56 transition duration-300"
-              :class="{ 'opacity-20': isLG && index != activeProjectIndex }"
+              :class="{ 'opacity-20': isLG && project.dataIndex != activeProjectIndex }"
               :title="project.data.title"
               :teaser="project.data.teaser"
               :tags="project.data.tags"
@@ -39,7 +39,7 @@
               :date="project.data.date"
               :image="project.data.key_image"
               :uid="project.uid"
-              :data-index="index"
+              :data-index="project.dataIndex"
               :observer="scrollObserver"
             />
           </NuxtLink>
@@ -55,22 +55,22 @@
       <!-- Image -->
       <div v-show="isLG" class="w-full">
         <div class="sticky top-0 bg-background">
-          <transition name="fade" mode="out-in">
-            <NuxtLink :to="'/project/' + projects[activeProjectIndex].uid">
-            <nuxt-img 
-              class="h-screen w-full object-cover object-center" 
-              :src="projects[activeProjectIndex].data.key_image.url" 
-              :key="projects[activeProjectIndex].data.key_image.url"
-              :alt="projects[activeProjectIndex].data.key_image.alt"
-              sizes="" 
-              fit="cover" />
-            </NuxtLink>
-          </transition>
-          <div class="absolute top-1/2 right-8 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
-            <svg class="" width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 9.5h18.333M12.833 2l7.5 7.5M12.833 17l7.5-7.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
+          <NuxtLink :to="'/project/' + projects[activeProjectIndex].uid">
+            <transition name="fade" mode="out-in"> 
+              <nuxt-img 
+                class="h-screen w-full object-cover object-center" 
+                :src="projects[activeProjectIndex].data.key_image.url" 
+                :key="projects[activeProjectIndex].data.key_image.url"
+                :alt="projects[activeProjectIndex].data.key_image.alt"
+                sizes="" 
+                fit="cover" />
+            </transition>
+            <div class="absolute top-1/2 right-8 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
+              <svg class="" width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 9.5h18.333M12.833 2l7.5 7.5M12.833 17l7.5-7.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -78,11 +78,14 @@
 
     <!--- Filters Overlay Mobile --->
     <overview-filters-mobile
-      :active="!isLG && showFilterModal"
+      :active="!isMD && showFilterModal"
       @close="closeFilterModal"
       title="filter projects"
       :items="tagFilters"
-      :footer="{ name: 'show everything' }"
+      :activeItems="activeFilters"
+      :footer="{ name: 'show everything', action: 'reset' }"
+      @update="toggleFilter"
+      @reset="resetFilters"
     />
   </div>
 </template>
@@ -106,36 +109,66 @@ export default {
     return {
       showFilterModal: false,
       scrollObserver: null,
-      activeFilters: new Set(),
+      activeFilters: [],
       activeProjectIndex: 0,
     };
   },
   computed: {
     filteredProjects: function() {
-      if (this.activeFilters.size == 0) {
-        console.debug('showing all projects')
+      if (this.activeFilters.length == 0) {
         return this.projects
       }
 
-      return this.projects.filter((project) => {
-        console.debug('filtering')
-        project.tags.some(tag => this.activeFilters.includes(tag))
+      const filtered = this.projects.filter(project => {
+        let active = false
+        project.data.tags.forEach(item => {
+          if (this.activeFilters.includes(item.tag)) {
+            active =  true
+          }
+        })
+        return active
       })
+
+      return filtered
     }
   },
   methods: {
     toggleFilter(filter) {
-      if (this.activeFilters.has(filter)) {
-        this.activeFilters.delete(filter)
-      } else {
-        this.activeFilters.add(filter);
-      }
+      if (this.activeFilters.includes(filter)) {
+        // set active project transparent
+        if (this.activeFilters.length != 1) {
+          document.querySelector("[data-index='" + this.activeProjectIndex + "']").classList.add("opacity-20")
+        }
 
-      console.debug('active filters', this.activeFilters)
-      console.debug('filtered projects', this.filteredProjects)
+        // remove filter
+        const index = this.activeFilters.indexOf(filter)
+        this.activeFilters.splice(index, 1)
+
+        // set activeProjectIndex to first of filtered list and update opacity
+        if (this.activeFilters.length != 0) {
+          this.activeProjectIndex = this.filteredProjects[0].dataIndex
+          const target = document.querySelector("[data-index='" + this.activeProjectIndex + "']")
+          target.classList.remove("opacity-20")
+        }
+      } else {
+        // set active project transparent
+        if (this.activeFilters.length == 0) {
+          document.querySelector("[data-index='" + this.activeProjectIndex + "']").classList.add("opacity-20")
+        }
+
+        // add filter
+        this.activeFilters.push(filter);
+
+        // set activeProjectIndex to first of filtered list and update opacity
+        if (this.activeFilters.length == 1) {
+          this.activeProjectIndex = this.filteredProjects[0].dataIndex
+          const target = document.querySelector("[data-index='" + this.activeProjectIndex + "']")
+          target.classList.remove("opacity-20")
+        }
+      }
     },
     resetFilters() {
-      this.activeFilters = new Set();
+      this.activeFilters = [];
     },
     openFilterModal() {
       this.showFilterModal = true;
@@ -187,6 +220,8 @@ export default {
 
       const tagFiltersArray = projects.map((el) => el.data.tags.map((el) => el.tag)).flat();
       const tagFilters = Array.from(new Set(tagFiltersArray));
+
+      projects.forEach(project => project['dataIndex'] = projects.indexOf(project))
 
       return {
         projects: projects,

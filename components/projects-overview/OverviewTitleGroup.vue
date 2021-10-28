@@ -9,7 +9,7 @@
             <div class="text-textSubtle">
                 <span v-for="tag in tags" :key="tag.tag">#{{ tag.tag }}  </span>
             </div>
-            <h2 class="text-h2 font-sans font-bold tracking-wide">{{ title }}</h2>
+            <h2 class="text-h3 xs:text-h2 font-sans font-bold tracking-wide">{{ title }}</h2>
             <div class="tracking-wide">{{ teaser }}</div>
             <div class="text-textSubtle mt-4">
                 <span v-for="tool in tools" :key="tool.tool">{{ tool.tool }} </span>

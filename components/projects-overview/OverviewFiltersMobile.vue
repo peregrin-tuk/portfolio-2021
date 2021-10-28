@@ -7,14 +7,14 @@
             <span class="my-14 text-h6 text-background">{{ title }}</span>
 
             <nav class="flex-grow flex flex-col justify-evenly items-center text-md">
-                <span v-for="item in items" :key="item">
+                <span v-for="item in items" :key="item" @click="$emit('update', item)" :class="{ 'text-accent': activeItems.includes(item) }">
                     #{{ item }}
                 </span>
             </nav>
 
-            <div class="pb-24">
+            <div class="pb-24 flex flex-col items-center">
                 <div class="w-16 h-px my-12 bg-textSubtle"></div>
-                <span class="text-md">{{ footer.name }}</span>
+                <span class="text-md" :class="{ 'invisible': activeItems.length }" @click="$emit(footer.action)">{{ footer.name }}</span>
             </div>
         </div>
     </transition>
@@ -32,6 +32,10 @@ export default {
             required: true
         },
         items: {
+            type: Array,
+            required: true
+        },
+        activeItems: {
             type: Array,
             required: true
         },
