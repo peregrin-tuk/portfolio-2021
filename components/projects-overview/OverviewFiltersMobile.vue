@@ -14,7 +14,7 @@
 
             <div class="pb-24 flex flex-col items-center">
                 <div class="w-16 h-px my-12 bg-textSubtle"></div>
-                <span class="text-md" :class="{ 'invisible': activeItems.length }" @click="$emit(footer.action)">{{ footer.name }}</span>
+                <span class="text-md" :class="{ 'invisible': !activeItems.length }" @click="$emit(footer.action)">{{ footer.name }}</span>
             </div>
         </div>
     </transition>

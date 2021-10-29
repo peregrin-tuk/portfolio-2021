@@ -76,6 +76,12 @@
 .toolicon-unity:before {
   content: "\e90d";
 }
+.toolicon-prismic:before {
+  content: "\e912";
+}
+.toolicon-netlify:before {
+  content: "\e911";
+}
 
 /* Colors */
 .toolicon-max-msp:hover:before {
@@ -128,4 +134,10 @@
 }
 .toolicon-unity:hover:before {
   color: #111;
+}
+.toolicon-prismic:hover:before {
+  color: #484a7a;
+}
+.toolicon-netlify:hover:before {
+  color: #00c7b7;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-stretch">
+  <div class="flex items-stretch flex-col lg:flex-row">
 
       <!-- Image -->
       <div v-show="isLG" class="flex-none lg:w-1/3 2xl:w-1/2">
@@ -14,17 +14,36 @@
               fit="cover" />
           </transition>
           <div class="absolute top-1/2 left-8 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
+            <a href="" @click.prevent="from == '/' || from == '/projects' ? $router.back() : $router.push('/projects')">
+              <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.964 14.964 2 2M14.964 2 2 14.964" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Mobile -->
+      <div v-show="!isLG">
+        <nuxt-img 
+          class="h-64 w-full object-cover object-center" 
+          :src="key_image.url" 
+          :key="key_image.url"
+          :alt="key_image.alt"
+          sizes="" 
+          fit="cover" />
+        <div class="absolute top-4 left-4 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
           <a href="" @click.prevent="from == '/' || from == '/projects' ? $router.back() : $router.push('/projects')">
-            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.964 14.964 2 2M14.964 2 2 14.964" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.333 9.5H2M9.5 17 2 9.5M9.5 2 2 9.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          </div>
         </div>
       </div>
 
        <!-- Progress Bar --->
       <progress-bar v-show="isLG" class="sticky top-0" backgroundColor="backgroundBright" color="backgroundAccent" />
+      
 
       <!-- Project Article -->
       <main class="w-screen h-full min-h-screen flex flex-col justify-between items-center p-8 sm:px-20 md:px-36 md:py-12 lg:w-full lg:p-32 lg:pb-16 3xl:px-52 bg-backgroundBright ">

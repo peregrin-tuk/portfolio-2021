@@ -23,7 +23,7 @@
             </svg>
           </div>
 
-          <div class="w-14 cursor-pointer" @click="resetFilters" :class="{ 'invisible': activeFilters.length }">show all</div>
+          <div class="w-14 cursor-pointer" @click="resetFilters" :class="{ 'invisible': !activeFilters.length }">show all</div>
         </div>
 
         <!-- Project List -->
