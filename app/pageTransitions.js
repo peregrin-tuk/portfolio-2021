@@ -1,7 +1,7 @@
 export default function chooseTransition(to, from) {
   let transition
 
-  if (!from) {
+  if (!from || from.name == 'contact') {
     transition = ''
   }
   else if (to.name == 'index') {
