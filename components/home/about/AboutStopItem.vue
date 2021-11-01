@@ -8,9 +8,11 @@
                 <span class="text-xs">{{ institution }},<br>{{ city }}</span>
             </div>        
         </div>
-        <svg :class="'text-' + color +' stroke-current mt-7 flex-shrink-0'" width="26" height="6" viewBox="0 0 26 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 3L23 3" stroke-width="6" stroke-linecap="round"/>
-        </svg>
+        <div :class="'text-' + color">
+            <svg class="stroke-current mt-7 flex-shrink-0" width="26" height="6" viewBox="0 0 26 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3L23 3" stroke-width="6" stroke-linecap="round"/>
+            </svg>
+        </div>
     </div>
 </template>
 

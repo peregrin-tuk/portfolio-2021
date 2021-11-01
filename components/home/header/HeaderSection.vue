@@ -19,7 +19,7 @@
             </svg>
         </div>
         <div v-else>
-            <svg class="absolute bottom-0 right-0 transform translate-y-1/2  text-backgroundAccent stroke-current" width="28vh" 
+            <svg class="absolute bottom-0 right-0 transform translate-y-1/2 text-backgroundAccent stroke-current" width="28vh" 
                 viewBox="0 0 181 587" fill="none" xmlns="http://www.w3.org/2000/svg"
             >
                 <path d="M202.241 294.229L159.444 190.432L116.648 294.229L159.444 397.388L202.241 294.229Z" vector-effect="non-scaling-stroke" />

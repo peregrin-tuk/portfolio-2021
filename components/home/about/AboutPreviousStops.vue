@@ -11,7 +11,7 @@
             </div>
 
             <div class="w-66 absolute top-104 left-13">
-                <about-stop-item-info text1="all the time" title="Numerous side projects" text2="which can be found here" scanted /> 
+                <about-stop-item-info text1="all the time" title="Numerous side projects" text2="which can be found here" link="/projects" scanted /> 
             </div>
 
             <!-- Education Container -->
@@ -29,7 +29,7 @@
             </div>
 
             <div class="w-66 absolute top-72 left-22">
-                <about-stop-item-info text1="all the time" title="Numerous side projects" text2="which can be found here" /> 
+                <about-stop-item-info text1="all the time" title="Numerous side projects" text2="which can be found here" link="/projects" /> 
             </div>
 
             <!-- Education Container -->
