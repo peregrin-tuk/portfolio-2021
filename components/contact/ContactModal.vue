@@ -4,7 +4,7 @@
             <svg @click="closeModal" class="text-backgroundAccent hover:text-accent stroke-current cursor-pointer my-3 sm:mb-8 sm:-mt-8" width="22" height="22" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="m1.354.646 28.284 28.285M.646 28.931 28.931.646" vector-effect="non-scaling-stroke" />
             </svg>
-        
+
             <div v-if="!sent" class="w-full sm:w-10/12 md:w-9/12 xl:w-244 rounded-lg cursor-default">
                 <div class="h-20 w-full rounded-t-lg bg-backgroundAccent flex justify-center items-center">
                     <span class="text-textBright text-h4 md:text-h3 tracking-wide">Good Afternoon!</span>
