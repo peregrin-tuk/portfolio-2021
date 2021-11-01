@@ -5,7 +5,7 @@
             :src="slice.primary.image.url" 
             :key="slice.primary.image.url"
             :alt="slice.primary.caption"
-            sizes="" 
+            sizes="xs:100vw sm:100vw md:100vw lg:60vw xl:50vw 2xl:50vw 3xl:50vw" 
             fit="cover" />
         <figcaption class="flex justify-start items-start gap-2 p-3 font-secondary text-textSubtle text-sm lg:text-xs">
             <span class="flex-none">fig {{ slice.primary.number }}</span>

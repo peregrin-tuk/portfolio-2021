@@ -74,7 +74,7 @@
                   :src="projects[activeProjectIndex].data.key_image.url" 
                   :key="projects[activeProjectIndex].data.key_image.url"
                   :alt="projects[activeProjectIndex].data.key_image.alt"
-                  sizes="" 
+                  sizes="3xl:50vw 2xl:50vw" 
                   fit="cover" />
               </transition>
               <div class="absolute top-1/2 right-8 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
