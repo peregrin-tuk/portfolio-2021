@@ -83,7 +83,10 @@ export default {
         `pages/**/*.vue`,
         `plugins/**/*.{js,ts}`,
         `nuxt.config.{js,ts}`
-      ]
+      ],
+      options: {
+          safeList: ['leading-6', 'text-justify', 'text-h5', 'capitalize', 'mb-3'],
+      }
     }
   }
   
