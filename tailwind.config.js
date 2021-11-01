@@ -77,16 +77,14 @@ export default {
         })
     ],
     purge: {
-      content: [
-        `components/**/*.{vue,js}`,
-        `layouts/**/*.vue`,
-        `pages/**/*.vue`,
-        `plugins/**/*.{js,ts}`,
-        `nuxt.config.{js,ts}`
-      ],
-      options: {
-          safeList: ['leading-6', 'text-justify', 'text-h5', 'capitalize', 'mb-3'],
-      }
+        content: [
+            `components/**/*.{vue,js}`,
+            `layouts/**/*.vue`,
+            `pages/**/*.vue`,
+            `plugins/**/*.{js,ts}`,
+            `nuxt.config.{js,ts}`
+        ],
+        safeList: ['leading-6', 'text-justify', 'text-h5', 'capitalize', 'mb-3', 'text-accentSoft', 'text-accent2'],
     }
   }
   

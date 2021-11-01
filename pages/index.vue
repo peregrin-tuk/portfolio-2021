@@ -7,6 +7,7 @@
       <about-section :content="about" />
       <bottom-section :content="bottom" :footer="footer" :last_updated="last_updated_date" />
     </main>
+    <!-- <div class="hidden leading-6 text-justify text-h5 capitalize mb-3 text-accentSoft text-accent2">dynamic tailwind classes</div> -->
   </div>
 </template>
 
