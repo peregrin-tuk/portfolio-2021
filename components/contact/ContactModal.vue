@@ -12,7 +12,7 @@
                 <div class="w-full rounded-b-lg bg-textBright flex justify-center">
                     <div class="w-136 m-8 md:mx-20 tracking-wide text-background text-sm font-secondary">
                         <p>{{ isSM ? content.intro_text_desktop : content.intro_text_mobile }}</p>
-                        <form ref="contact-form" name="contact-form" data-netlify="true" data-netlify-honeypot="bot-field" method="POST" novalidate="true" class="mt-4">
+                        <form ref="contact-form" name="contact-form" data-netlify="true" data-netlify-honeypot="bot-field" method="POST" @submit.prevent="checkForm" novalidate="true" class="mt-4">
                             <input type="hidden" name="form-name" value="contact-form" />
                             <div class="flex flex-wrap gap-6 my-6">
                                 <div class="flex-grow min-w-66">
@@ -43,9 +43,13 @@
                     <span class="text-textBright text-h4 md:text-h3 tracking-wide">{{ content.thanks_header }}</span>
                 </div>
                 <div class="w-full rounded-b-lg p-8 bg-textBright flex flex-col justify-center font-secondary">
-                    <div class="h-64 flex flex-col items-center justify-center tracking-wide">
+                    <div v-if="!postError" class="h-64 flex flex-col items-center justify-center tracking-wide">
                         <span class="text-textSubtle mb-6">Sent.</span>
                         <p class="text-center">Thanks for your message, {{ name }}!<br /> I will get back to you soon.</p>
+                    </div>
+                    <div v-else class="h-64 flex flex-col items-center justify-center tracking-wide">
+                        <span class="text-textSubtle mb-6">Error.</span>
+                        <p class="text-center">Sorry, {{ name }}! Unfortunately your message could not be sent at the moment.<br /> Please try again later.</p>
                     </div>
                     <div class="flex flex-col items-center my-4">
                         <button-modal @click="closeModal" text="close" :filled="!isSM" />
@@ -69,6 +73,7 @@ function initialState() {
             email: null,
             message: null,
             errors: false,
+            postError: false
         }
 }
 
@@ -105,8 +110,24 @@ export default {
             }
 
             if (!this.errors) {
-                this.sent = true
-                this.$refs['contact-form'].submit()
+                const data = {
+                    "form-name": e.target.getAttribute("name"),
+                    "name": this.name,
+                    "email": this.email,
+                    "message": this.message,
+                }
+                
+                fetch("/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(this.createFormDataObj(data)).toString()
+                })
+                .then(() => this.sent = true)
+                .catch(error => {
+                    this.sent = true
+                    this.postError = true
+                    console.error(error)
+                })
             }
 
             e.preventDefault();
@@ -115,9 +136,16 @@ export default {
             var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email);
         },
+        createFormDataObj(data) {
+            const formData = new FormData();
+            for (const key of Object.keys(data)) {
+                formData.append(key, data[key]);
+            }
+            return formData;
+        },
         closeModal() {
-            Object.assign(this.$data, initialState())
             this.$emit('close')
+            Object.assign(this.$data, initialState())
         }
     }
 
