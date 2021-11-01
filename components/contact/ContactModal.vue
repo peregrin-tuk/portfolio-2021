@@ -12,7 +12,7 @@
                 <div class="w-full rounded-b-lg bg-textBright flex justify-center">
                     <div class="w-136 m-8 md:mx-20 tracking-wide text-background text-sm font-secondary">
                         <p>{{ isSM ? content.intro_text_desktop : content.intro_text_mobile }}</p>
-                        <form name="contact-form" data-netlify="true" data-netlify-honeypot="bot-field" method="POST" novalidate="true" class="mt-4">
+                        <form ref="contact-form" name="contact-form" data-netlify="true" data-netlify-honeypot="bot-field" method="POST" novalidate="true" class="mt-4">
                             <input type="hidden" name="form-name" value="contact-form" />
                             <div class="flex flex-wrap gap-6 my-6">
                                 <div class="flex-grow min-w-66">
@@ -31,7 +31,7 @@
 
                             <div class="flex flex-col items-center mt-4">
                                 <span class="pb-4 text-xxs text-accent lowercase">{{ validationMessage }}</span>
-                                <button-modal type="submit" text="send" :filled="!isSM" />
+                                <button-modal @click="checkForm" text="send" :filled="!isSM" />
                                 <span v-show="content.contact_mail" class="py-6 text-xxs text-textSubtle">alternatively, reach me at <a :href="'mailto:' + content.contact_mail" class="text-backgroundAccent">{{ content.contact_mail }}</a></span>
                             </div>
                         </form> 
@@ -106,7 +106,7 @@ export default {
 
             if (!this.errors) {
                 this.sent = true
-                return true
+                this.$refs['contact-form'].submit()
             }
 
             e.preventDefault();
