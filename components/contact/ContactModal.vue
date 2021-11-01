@@ -12,8 +12,7 @@
                 <div class="w-full rounded-b-lg bg-textBright flex justify-center">
                     <div class="w-136 m-8 md:mx-20 tracking-wide text-background text-sm font-secondary">
                         <p>{{ isSM ? content.intro_text_desktop : content.intro_text_mobile }}</p>
-                        <form ref="contact-form" name="contact-form" data-netlify="true" data-netlify-honeypot="bot-field" @submit="checkForm" novalidate="true" class="mt-4">
-                            <input type="hidden" name="form-name" value="contact-form" />
+                        <form name="contact-form" data-netlify="true" data-netlify-honeypot="bot-field" method="POST" @submit="checkForm" novalidate="true" class="mt-4">
                             <div class="flex flex-wrap gap-6 my-6">
                                 <div class="flex-grow min-w-66">
                                     <label for="name" class="text-textSubtle mb-3">name</label>
@@ -61,6 +60,16 @@
 import { breakpointMixin } from '~/mixins/breakpointMixin.js'
 import ButtonModal from '~/components/general/buttons/ButtonModal.vue'
 
+function initialState() {
+    return {
+            sent: false,
+            validationMessage: '',
+            name: null,
+            email: null,
+            message: null,
+            errors: false,
+        }
+}
 
 export default {
     mixins: [breakpointMixin],
@@ -78,22 +87,10 @@ export default {
         }
     },
     data() {
-        return {
-            sent: false,
-            validationMessage: '',
-            name: null,
-            email: null,
-            message: null,
-            errors: false,
-        }
+        return initialState()
     },
     methods: {
-        submitForm() {
-            console.debug('submitting form')
-            this.$refs['contact-form'].submit()
-        },
         checkForm(e) {
-            console.debug("Validation called")
             this.errors = false
             this.validationMessage = ''
 
@@ -118,7 +115,7 @@ export default {
             return re.test(email);
         },
         closeModal() {
-            this.sent = false
+            Object.assign(this.$data, initialState())
             this.$emit('close')
         }
     }
