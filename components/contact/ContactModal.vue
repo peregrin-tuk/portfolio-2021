@@ -12,7 +12,8 @@
                 <div class="w-full rounded-b-lg bg-textBright flex justify-center">
                     <div class="w-136 m-8 md:mx-20 tracking-wide text-background text-sm font-secondary">
                         <p>{{ isSM ? content.intro_text_desktop : content.intro_text_mobile }}</p>
-                        <form name="contact-form" data-netlify="true" data-netlify-honeypot="bot-field" method="POST" @submit="checkForm" novalidate="true" class="mt-4">
+                        <form name="contact-form" data-netlify="true" data-netlify-honeypot="bot-field" method="POST" novalidate="true" class="mt-4">
+                            <input type="hidden" name="form-name" value="contact-form" />
                             <div class="flex flex-wrap gap-6 my-6">
                                 <div class="flex-grow min-w-66">
                                     <label for="name" class="text-textSubtle mb-3">name</label>
