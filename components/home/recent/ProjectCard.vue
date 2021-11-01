@@ -13,7 +13,7 @@
                     </div>
                     <div class="w-px h-10 bg-accent" />
                     <div class="w-1/2">
-                        <span class="p-4 hover-accent-subtle">more interactive</span>
+                        <NuxtLink :to="'/projects?filter=' + tag" class="p-4 hover-accent-subtle">more {{ tag }}</NuxtLink>
                     </div>
                 </div>
             </div>

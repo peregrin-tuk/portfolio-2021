@@ -1,11 +1,13 @@
 <template>
-  <main>
-    <contact-modal :active="showContactModal" @close="closeContactModal" :content="contact" />
-    <header-section :content="header" />
-    <recent-projects-section :content="recent_projects" />
-    <about-section :content="about" />
-    <bottom-section :content="bottom" :footer="footer" :last_updated="last_updated_date" />
-  </main>
+  <div class="slideable-page" @scroll="saveScroll">
+    <main>
+      <contact-modal :active="showContactModal" @close="closeContactModal" :content="contact" />
+      <header-section :content="header" />
+      <recent-projects-section :content="recent_projects" />
+      <about-section :content="about" />
+      <bottom-section :content="bottom" :footer="footer" :last_updated="last_updated_date" />
+    </main>
+  </div>
 </template>
 
 <script>
@@ -15,11 +17,12 @@ import AboutSection from '~/components/home/about/AboutSection.vue'
 import BottomSection from '~/components/home/bottom/BottomSection.vue'
 import ContactModal from '~/components/contact/ContactModal.vue'
 import chooseTransition from "~/app/pageTransitions";
-
+import { scrollMixin } from '~/mixins/scrollMixin'
 
 
 export default {
   components: { HeaderSection, RecentProjectsSection, AboutSection, BottomSection, ContactModal },
+  mixins: [ scrollMixin ],
   name: 'Home',
   transition(to, from) {
     return chooseTransition(to, from)

@@ -1,5 +1,6 @@
 <template>
-  <div class="flex items-stretch flex-col lg:flex-row">
+  <div class="slideable-page">
+    <div class="flex items-stretch flex-col lg:flex-row">
 
       <!-- Image -->
       <div v-show="isLG" class="flex-none lg:w-1/3 2xl:w-1/2">
@@ -41,7 +42,7 @@
         </div>
       </div>
 
-       <!-- Progress Bar --->
+      <!-- Progress Bar --->
       <progress-bar v-show="isLG" class="sticky top-0" backgroundColor="backgroundBright" color="backgroundAccent" />
       
 
@@ -75,6 +76,7 @@
 
       <contact-modal :active="showContactModal" @close="closeContactModal" :content="contact" />
     </div>
+  </div>
 </template>
 
 <script>
