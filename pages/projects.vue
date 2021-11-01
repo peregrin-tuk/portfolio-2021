@@ -95,11 +95,16 @@ import OverviewTitleGroup from "~/components/projects-overview/OverviewTitleGrou
 import OverviewFiltersMobile from "~/components/projects-overview/OverviewFiltersMobile.vue";
 import ProgressBar from "~/components/general/ProgressBar.vue"
 import { breakpointMixin } from "~/mixins/breakpointMixin";
+import chooseTransition from "~/app/pageTransitions";
+
 
 export default {
   name: "Projects",
   components: { OverviewTitleGroup, OverviewFiltersMobile, ProgressBar },
   mixins: [breakpointMixin],
+  transition(to, from) {
+    return chooseTransition(to, from)
+  },
   head() {
     return {
       title: "Valleyhammer | Portfolio",
@@ -242,4 +247,5 @@ export default {
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
+  
 </style>

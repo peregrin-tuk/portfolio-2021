@@ -83,11 +83,17 @@ import ProjectHeader from "~/components/project-page/ProjectHeader.vue"
 import ProjectArticle from "~/components/project-page/ProjectArticle.vue"
 import ContactModal from '~/components/contact/ContactModal.vue'
 import { breakpointMixin } from "~/mixins/breakpointMixin";
+import chooseTransition from "~/app/pageTransitions";
+
+
 
 export default {
   name: 'project-page',
   components: { ProgressBar, ProjectHeader, ProjectArticle, ContactModal },
-  mixins: [breakpointMixin],
+  mixins: [ breakpointMixin],
+  transition(to, from) {
+    return chooseTransition(to, from)
+  },
   head () {
     return {
       title: 'Valleyhammer | ' + this.title,

@@ -14,11 +14,16 @@ import RecentProjectsSection from '~/components/home/recent/RecentProjectsSectio
 import AboutSection from '~/components/home/about/AboutSection.vue'
 import BottomSection from '~/components/home/bottom/BottomSection.vue'
 import ContactModal from '~/components/contact/ContactModal.vue'
+import chooseTransition from "~/app/pageTransitions";
+
 
 
 export default {
   components: { HeaderSection, RecentProjectsSection, AboutSection, BottomSection, ContactModal },
   name: 'Home',
+  transition(to, from) {
+    return chooseTransition(to, from)
+  },
   head () {
     return {
       title: 'Valleyhammer | Portfolio',

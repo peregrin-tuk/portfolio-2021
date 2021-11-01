@@ -3,5 +3,5 @@
         "components/**/*",
         "pages/**/*",
         "mixins/*"
-    ]
+, "app/pageTransitions.js"    ]
 }

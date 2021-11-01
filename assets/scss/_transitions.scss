@@ -1,0 +1,75 @@
+@tailwind screens;
+
+/* SLIDE */
+
+/* during entering and leaving : */
+.slide-in-enter-active, .slide-in-leave-active,
+.slide-out-enter-active, .slide-out-leave-active {
+    transition: all 3s ease;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+.slide-in-enter-active, .slide-out-leave-active {
+    z-index: 100;
+}
+
+/* entering start */
+.slide-in-enter, .slide-out-leave-to {
+    transform: translateX(100%);
+}
+
+/* entering end, leaving start */
+.slide-in-enter-to, .slide-out-leave,
+.slide-in-leave, .slide-out-enter-to {
+    transform: translateX(0);
+}
+
+/* leaving end */
+.slide-in-leave-to, .slide-out-enter {
+    transform: translateX(-30%);
+}
+
+/* PUSH */
+
+/* during entering and leaving : */
+.push-left-enter-active, .push-left-leave-active,
+.push-right-enter-active, .push-right-leave-active {
+    transition: all 3s ease-in-out;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+.push-left-enter-active, .push-right-leave-active {
+    z-index: 100;
+}
+
+/* entering start */
+.push-left-enter, .push-right-leave-to {
+    transform: translateX(100%);
+
+    @screen lg {
+        transform: translateX(66%);
+    }
+    @screen 2xl {
+        transform: translateX(50%);
+    }
+}
+
+/* entering end */
+.push-left-enter-to, .push-right-leave,
+.push-left-leave, .push-right-enter-to {
+    transform: translateX(0);
+}
+
+/* leaving end */
+.push-left-leave-to, .push-right-enter {
+    transform: translateX(-100%);
+
+    @screen lg {
+        transform: translateX(-66%);
+    }
+    @screen 2xl {
+        transform: translateX(-50%);
+    }
+}
