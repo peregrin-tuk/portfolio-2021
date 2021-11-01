@@ -5,9 +5,20 @@
         <!-- Project Overview -->
         <main class="bg-backgroundBright w-screen h-full min-h-screen flex-none p-8 sm:px-20 md:px-36 md:py-12 lg:w-2/3 2xl:w-1/2 lg:px-12 lg:py-0">
           <!--- Logo & Filters --->
-          <div class="w-full mb-16 px-4 flex justify-between items-center text-textSubtle text-sm font-secondary lg:sticky lg:top-0 lg:pt-10 lg:pb-4 lg:bg-backgroundBright">
+          <div class="w-full mb-16 px-4 z-10 flex justify-between items-center text-textSubtle text-sm font-secondary lg:sticky lg:top-0 lg:pt-10 lg:pb-4 lg:bg-backgroundBright">
             <div class="w-14">
-              <NuxtLink to="/">V</NuxtLink>
+              <NuxtLink to="/" class="hover-accent-subtle">
+                <svg width="18" height="18" class="fill-current" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#a)">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M.889 2.61h1.875l4.778 6.232 3.021 5.11-1.53 2.652L.889 2.61Zm4.718 0h1.378l3.285 4.38 2.206 3.649-1.53 2.651L8 8.314 5.607 2.61Zm3.703 0h1.663l2.104 2.565 1.313 2.15-1.531 2.652-1.996-3.311L9.31 2.61Zm3.651 0h2.474l.867 1.402-1.53 2.65-1.1-1.845-.71-2.207Zm3.723.74-.48-.74h.908l-.427.74Z"/>
+                  </g>
+                  <defs>
+                      <clipPath id="a">
+                      <path fill="#fff" d="M0 0h18v18H0z"/>
+                      </clipPath>
+                  </defs>
+              </svg>
+              </NuxtLink>
             </div>
 
             <div v-if="isMD">
@@ -47,7 +58,7 @@
           </div>
 
           <!-- Home Link -->
-          <div class="w-20 mt-32 font-secondary text-base lg:text-sm text-textSubtle text-center mx-auto lg:w-full lg:sticky lg:bottom-0 lg:pb-10 lg:pt-4 lg:bg-backgroundBright"><NuxtLink to="/">home</NuxtLink></div>
+          <div class="w-20 mt-32 z-10 font-secondary text-base lg:text-sm text-textSubtle text-center mx-auto lg:w-full lg:sticky lg:bottom-0 lg:pb-10 lg:pt-4 lg:bg-backgroundBright"><NuxtLink to="/">home</NuxtLink></div>
         </main>
 
         <!-- Progress Bar --->
@@ -198,7 +209,6 @@ export default {
   },
   created() {
     // set filters
-    console.debug('filter paramerer', this.$route.query.filter)
     if (this.$route.query.filter && this.tagFilters.includes(this.$route.query.filter)) this.activeFilters = [ this.$route.query.filter ]
 
     // initialize scroll observer
