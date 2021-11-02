@@ -31,7 +31,6 @@
           :src="key_image.url" 
           :key="key_image.url"
           :alt="key_image.alt"
-          sizes="3xl:50vw 2xl:50vw" 
           fit="cover" />
         <div class="absolute top-4 left-4 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
           <a href="" @click.prevent="from == '/' || from == '/projects' ? $router.back() : $router.push('/projects')">
