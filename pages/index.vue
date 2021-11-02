@@ -1,5 +1,4 @@
 <template>
-  <div class="slideable-page" @scroll="saveScroll">
     <main>
       <contact-modal :active="showContactModal" @close="closeContactModal" :content="contact" />
       <header-section :content="header" />
@@ -7,8 +6,6 @@
       <about-section :content="about" />
       <bottom-section :content="bottom" :footer="footer" :last_updated="last_updated_date" />
     </main>
-    <!-- <div class="hidden leading-6 text-justify text-h5 capitalize mb-3 text-accentSoft text-accent2">dynamic tailwind classes</div> -->
-  </div>
 </template>
 
 <script>
@@ -23,7 +20,7 @@ import { scrollMixin } from '~/mixins/scrollMixin'
 
 export default {
   components: { HeaderSection, RecentProjectsSection, AboutSection, BottomSection, ContactModal },
-  mixins: [ scrollMixin ],
+  mixins: [ ],
   name: 'Home',
   transition(to, from) {
     return chooseTransition(to, from)
