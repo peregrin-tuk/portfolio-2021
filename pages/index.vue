@@ -5,6 +5,7 @@
       <recent-projects-section :content="recent_projects" />
       <about-section :content="about" />
       <bottom-section :content="bottom" :footer="footer" :last_updated="last_updated_date" />
+      <!-- <div class="hidden leading-6 text-justify text-h5 capitalize mb-3 text-accentSoft text-accent2">dynamic tailwind classes</div> -->
     </main>
 </template>
 
@@ -15,8 +16,6 @@ import AboutSection from '~/components/home/about/AboutSection.vue'
 import BottomSection from '~/components/home/bottom/BottomSection.vue'
 import ContactModal from '~/components/contact/ContactModal.vue'
 import chooseTransition from "~/app/pageTransitions";
-import { scrollMixin } from '~/mixins/scrollMixin'
-
 
 export default {
   components: { HeaderSection, RecentProjectsSection, AboutSection, BottomSection, ContactModal },
