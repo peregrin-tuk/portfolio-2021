@@ -15,34 +15,34 @@ export default {
         backgroundColor: {
             type: String,
             required: true
-        },
-        scrollContainer: {
-            // note: no typecheck due to server side rendering not knowing Element
-            required: false
         }
     },
-    created () {
+    data() {
+        return {
+            scrollContainer: null
+        }
+    },
+    mounted() {
         if (process.client) { 
-            if (this.scrollContainer !== null) this.scrollContainer.addEventListener('scroll', this.handleScroll)
-            else window.addEventListener('scroll', this.handleScroll)            
+            this.scrollContainer = this.$el.closest('#scroll-container') || window
+            this.scrollContainer.addEventListener('scroll', this.handleScroll)         
         }
     },
-    destroyed () {
+    destroyed() {
         if (process.client) {
-            if (this.scrollContainer) this.scrollContainer.removeEventListener('scroll', this.handleScroll)
-            window.removeEventListener('scroll', this.handleScroll)
+            this.scrollContainer.removeEventListener('scroll', this.handleScroll)
         }  
     },
     methods: {
         handleScroll (event) {
             let containerScroll, contentHeight
 
-            if (this.scrollContainer) {
-                containerScroll = this.scrollContainer.scrollTop
-                contentHeight = this.scrollContainer.scrollHeight - this.scrollContainer.clientHeight
-            } else {
+            if (this.scrollContainer == window) {
                 containerScroll = document.body.scrollTop || document.documentElement.scrollTop
                 contentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+            } else {
+                containerScroll = this.scrollContainer.scrollTop
+                contentHeight = this.scrollContainer.scrollHeight - this.scrollContainer.clientHeight
             }
             
             let scrollPercentage = (containerScroll / contentHeight) * 100

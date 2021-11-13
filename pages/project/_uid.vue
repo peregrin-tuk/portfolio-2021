@@ -42,7 +42,7 @@
       </div>
 
       <!-- Progress Bar --->
-      <!-- <progress-bar v-show="isLG" :scrollContainer="scrollContainer" class="sticky top-0" backgroundColor="backgroundBright" color="backgroundAccent" /> -->
+      <progress-bar v-show="isLG" class="sticky top-0" backgroundColor="backgroundBright" color="backgroundAccent" />
       
 
       <!-- Project Article -->
