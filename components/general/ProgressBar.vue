@@ -15,20 +15,38 @@ export default {
         backgroundColor: {
             type: String,
             required: true
+        },
+        scrollContainer: {
+            // note: no typecheck due to server side rendering not knowing Element
+            required: false
         }
     },
     created () {
-        if (process.client) window.addEventListener('scroll', this.handleScroll);
+        if (process.client) { 
+            if (this.scrollContainer !== null) this.scrollContainer.addEventListener('scroll', this.handleScroll)
+            else window.addEventListener('scroll', this.handleScroll)            
+        }
     },
     destroyed () {
-        if (process.client) window.removeEventListener('scroll', this.handleScroll);
+        if (process.client) {
+            if (this.scrollContainer) this.scrollContainer.removeEventListener('scroll', this.handleScroll)
+            window.removeEventListener('scroll', this.handleScroll)
+        }  
     },
     methods: {
         handleScroll (event) {
-            let windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let contentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrollPercentage = (windowScroll / contentHeight) * 100;
-            document.querySelector(".scroll-progress").style.height = scrollPercentage + "%";
+            let containerScroll, contentHeight
+
+            if (this.scrollContainer) {
+                containerScroll = this.scrollContainer.scrollTop
+                contentHeight = this.scrollContainer.scrollHeight - this.scrollContainer.clientHeight
+            } else {
+                containerScroll = document.body.scrollTop || document.documentElement.scrollTop
+                contentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+            }
+            
+            let scrollPercentage = (containerScroll / contentHeight) * 100
+            document.querySelector(".scroll-progress").style.height = scrollPercentage + "%"
         }
     }
 }

@@ -43,10 +43,13 @@ export default {
 
       if (to.hash) {
         let el = await findEl(to.hash)
+        let container = await findEl('#scroll-container')
         if ('scrollBehavior' in document.documentElement.style) {
-          return window.scrollTo({ top: el.offsetTop, behavior: 'smooth' })
+          if (container) return container.scrollTo({ top: el.offsetTop, behavior: 'smooth' })
+          else return window.scrollTo({ top: el.offsetTop, behavior: 'smooth' })
         } else {
-          return window.scrollTo(0, el.offsetTop)
+          if (container) container.scrollTo(0, el.offsetTop)
+          else return window.scrollTo(0, el.offsetTop)
         }
       }
 
@@ -108,7 +111,8 @@ export default {
   // Prismic configuration
   prismic: {
     endpoint: 'https://valleyhammer.cdn.prismic.io/api/v2',
-    modern: true
+    modern: true,
+    preview: false
   },
 
   // Extension of tailwind configuration

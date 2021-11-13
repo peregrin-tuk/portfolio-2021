@@ -43,7 +43,7 @@
             
             <div v-if="isSM">
                 <nav class="flex justify-end font-secondary text-sm">
-                    <NuxtLink v-for="item in desktopNavContent" :key="item.name" :to="item.link" class="hover-accent-subtle ml-14">{{ item.name }}</NuxtLink>
+                    <NuxtLink v-for="item in desktopNavContent" :key="item.name" :to="item.link" @click.native="item.link.startsWith('#') && scrollToAnchor(item.link)" class="hover-accent-subtle ml-14">{{ item.name }}</NuxtLink>
                 </nav>
             </div>
             <div v-else>
@@ -64,7 +64,7 @@
         <!--- Actions --->
         <div v-if="isSM">
             <div class="actions absolute w-full flex justify-center items-center">
-                <NuxtLink to="#recent-projects" class="p-4 pb-0 w-72 flex justify-end text-textSubtle hover-bright-up">
+                <NuxtLink to="#recent-projects" @click.native="scrollToAnchor('#recent-projects')" class="p-4 pb-0 w-72 flex justify-end text-textSubtle hover-bright-up">
                     <img class="w-9" src="~/assets/svg/quick-icon.svg" alt="Stopwatch Icon">
                     <div class="action-left font-secondary text-sm ml-4 text-right">
                         <prismic-rich-text :field="content.quick_text_desktop" :htmlSerializer="secondarySerializer" />
@@ -101,11 +101,12 @@
 <script>
 import NavigationMobile from './NavigationMobile.vue'
 import { breakpointMixin } from '~/mixins/breakpointMixin.js'
+import { anchorLinkMixin } from '~/mixins/anchorLinkMixin.js'
 import prismicDOM from "prismic-dom";
 
 
 export default {
-    mixins: [breakpointMixin],
+    mixins: [breakpointMixin, anchorLinkMixin],
     components: { NavigationMobile },
     props: {
         content: {
@@ -134,7 +135,7 @@ export default {
                     },
                     { 
                         name: '',
-                        link: '#'
+                        link: ''
                     },
                     { 
                         name: 'all projects',

@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main id="scroll-container">
       <contact-modal :active="showContactModal" @close="closeContactModal" :content="contact" />
       <header-section :content="header" />
       <recent-projects-section :content="recent_projects" />
@@ -43,6 +43,9 @@ export default {
       this.showContactModal = false;
       window.history.pushState({}, null, this.$route.path)
     },
+    removeHash() {
+      window.location.hash = ""
+    }
   },
   beforeRouteLeave(to, from, next) {
     if (to.path === "/contact") {

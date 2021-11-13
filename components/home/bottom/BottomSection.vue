@@ -1,6 +1,6 @@
 <template>
     <div class="w-full h-auto bg-gradient-bottom flex flex-col justify-start items-center relative">
-        <img v-if="isXL" class="mt-1 ml-1.5 transform -translate-x-56" src="~/assets/svg/path-desktop.svg" alt="Path">
+        <img v-if="isXL" class="mt-1 ml-1.5 transform xl:-translate-x-48 2xl:-translate-x-56" src="~/assets/svg/path-desktop.svg" alt="Path">
         <img v-else-if="isMD" class="mt-1 ml-0.5 transform translate-x-20" src="~/assets/svg/path-tablet.svg" alt="Path">
         <img v-else class="mt-1 transform -translate-x-19" src="~/assets/svg/path-mobile.svg" alt="Path">
         <div class="mt-10 xl:-mt-20 mb-6 lg:mb-10 text-h6 sm:text-h4 text-background text-center

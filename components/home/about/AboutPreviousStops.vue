@@ -1,5 +1,5 @@
 <template>
-    <div class="pt-10 xl:px-20">
+    <div class="pt-20 xl:px-10 2xl:px-20">
         <h3 class="mb-5 text-h3 text-right md:text-left text-textBright">Previous Stops</h3>
 
         <!--  DESKTOP  -->

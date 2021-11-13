@@ -1,9 +1,9 @@
 <template>
-  <div class="slideable-page">
+  <div id="scroll-container">
     <div class="flex items-stretch flex-col lg:flex-row">
 
       <!-- Image -->
-      <div v-show="isLG" class="flex-none lg:w-1/3 2xl:w-1/2">
+      <div v-show="isLG" class="w-full">
         <div class="sticky top-0 bg-background">
           <transition name="fade" mode="out-in">
             <nuxt-img 
@@ -11,7 +11,6 @@
               :src="key_image.url" 
               :key="key_image.url"
               :alt="key_image.alt"
-              sizes="lg:100vw md:100vw sm:100vw" 
               fit="cover" />
           </transition>
           <div class="absolute top-1/2 left-8 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
@@ -28,9 +27,10 @@
       <div v-show="!isLG">
         <nuxt-img 
           class="h-64 w-full object-cover object-center" 
-          :src="key_image.url" 
-          :key="key_image.url"
+          :src="key_image.mobile.url" 
+          :key="key_image.mobile.url"
           :alt="key_image.alt"
+          sizes="lg:100vw md:100vw sm:100vw" 
           fit="cover" />
         <div class="absolute top-4 left-4 flex justify-center items-center w-13 h-13 rounded-full bg-backgroundSubtle">
           <a href="" @click.prevent="from == '/' || from == '/projects' ? $router.back() : $router.push('/projects')">
@@ -42,11 +42,11 @@
       </div>
 
       <!-- Progress Bar --->
-      <progress-bar v-show="isLG" class="sticky top-0" backgroundColor="backgroundBright" color="backgroundAccent" />
+      <!-- <progress-bar v-show="isLG" :scrollContainer="scrollContainer" class="sticky top-0" backgroundColor="backgroundBright" color="backgroundAccent" /> -->
       
 
       <!-- Project Article -->
-      <main class="w-screen h-full min-h-screen flex flex-col justify-between items-center p-8 sm:px-20 md:px-36 md:py-12 lg:w-full lg:p-32 lg:pb-16 3xl:px-52 bg-backgroundBright ">
+      <main class="w-screen lg:w-2/3 2xl:w-1/2 h-full min-h-screen flex-none flex flex-col justify-between items-center p-8 sm:px-20 md:px-36 md:py-12 lg:p-32 lg:pb-16 3xl:px-52 bg-backgroundBright ">
         <project-header 
           :title="title"
           :teaser="teaser"
@@ -60,16 +60,16 @@
           :slices="slices"
         />
         <project-article
-        class="max-w-xl"
+          class="max-w-xl"
           :slices="slices"
         />
         
 
         <!-- Footer Links -->
         <nav class="w-full flex justify-between mt-20 font-secondary text-base lg:text-sm text-textSubtle text-center">
-          <NuxtLink to="/projects">projects</NuxtLink>
-          <NuxtLink to="/">home</NuxtLink>
-          <NuxtLink to="/contact">contact</NuxtLink>
+          <NuxtLink to="/projects" class="hover-accent-subtle">projects</NuxtLink>
+          <NuxtLink to="/"         class="hover-accent-subtle">home</NuxtLink>
+          <NuxtLink to="/contact"  class="hover-accent-subtle">contact</NuxtLink>
         </nav>
       </main>
 
@@ -108,6 +108,9 @@ export default {
   computed: {
     from: function() {
       return this.$nuxt.context.from ? this.$nuxt.context.from.path : ''
+    },
+    scrollContainer: function() {
+      if (process.client) return document.querySelector('#scroll-container')
     }
   },
   methods: {
