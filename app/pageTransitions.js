@@ -19,5 +19,6 @@ export default function chooseTransition(to, from) {
   else {
     transition = ''
   }
+
   return transition
 }

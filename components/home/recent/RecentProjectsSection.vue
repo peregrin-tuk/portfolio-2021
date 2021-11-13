@@ -1,5 +1,5 @@
 <template>
-    <div id="recent-projects" class="min-h-screen h-full w-full bg-gradient-reverse">
+    <div id="recent-projects" class="min-w-full 3xl:pb-32 bg-gradient-reverse">
         <div class="max-w-7xl h-auto pt-12 pb-20 sm:px-0 sm:pt-36 mx-auto">
             <h2 class="w-24 sm:w-auto py-4 pl-16 sm:pl-20 relative z-10 text-textBright text-h3 sm:text-h2">Recent Projects</h2>
             <div class="w-full min-h-152 flex flex-wrap justify-center relative z-10">

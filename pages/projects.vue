@@ -1,9 +1,9 @@
 <template>
-  <div class="slideable-page" @scroll="saveScroll">
+  <div id="scroll-container" @scroll="saveScroll">
     <div>
       <div class="flex items-stretch">
         <!-- Project Overview -->
-        <main class="bg-backgroundBright w-screen h-full min-h-screen flex-none p-8 sm:px-20 md:px-36 md:py-12 lg:w-2/3 2xl:w-1/2 lg:px-12 lg:py-0">
+        <main class="bg-backgroundBright w-screen lg:w-2/3 2xl:w-1/2 h-full min-h-screen flex-none p-8 sm:px-20 md:px-36 md:py-12 lg:px-12 lg:py-0">
           <!--- Logo & Filters --->
           <div class="w-full mb-16 px-4 z-10 flex justify-between items-center text-textSubtle text-sm font-secondary lg:sticky lg:top-0 lg:pt-10 lg:pb-4 lg:bg-backgroundBright">
             <div class="w-14">
@@ -58,7 +58,7 @@
           </div>
 
           <!-- Home Link -->
-          <div class="w-20 mt-32 z-10 font-secondary text-base lg:text-sm text-textSubtle text-center mx-auto lg:w-full lg:sticky lg:bottom-0 lg:pb-10 lg:pt-4 lg:bg-backgroundBright"><NuxtLink to="/">home</NuxtLink></div>
+          <div class="w-20 mt-32 z-10 font-secondary text-base lg:text-sm text-textSubtle text-center mx-auto lg:w-full lg:sticky lg:bottom-0 lg:pb-10 lg:pt-4 lg:bg-backgroundBright"><NuxtLink to="/" class="hover-accent-subtle">home</NuxtLink></div>
         </main>
 
         <!-- Progress Bar --->
@@ -148,6 +148,12 @@ export default {
       })
 
       return filtered
+    },
+    scrollContainer: function() {
+      if (process.client) {
+        const el = document.querySelector('#scroll-container')
+        return el
+      }
     }
   },
   methods: {
@@ -206,10 +212,16 @@ export default {
       });
     }
   },
-  created() {
+  mounted() {
     // set filters
-    if (this.$route.query.filter && this.tagFilters.includes(this.$route.query.filter)) this.activeFilters = [ this.$route.query.filter ]
-
+    if (this.$route.query.filter && this.tagFilters.includes(this.$route.query.filter)) {
+      this.$el.scrollTop = 0
+      this.activeFilters = [ this.$route.query.filter ]
+      this.activeProjectIndex = this.filteredProjects[0].dataIndex
+      history.replaceState({}, null, this.$route.path)
+    }
+  },
+  created() {
     // initialize scroll observer
     if (process.client) {
       this.scrollObserver = new IntersectionObserver(

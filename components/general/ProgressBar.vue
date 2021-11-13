@@ -17,18 +17,36 @@ export default {
             required: true
         }
     },
-    created () {
-        if (process.client) window.addEventListener('scroll', this.handleScroll);
+    data() {
+        return {
+            scrollContainer: null
+        }
     },
-    destroyed () {
-        if (process.client) window.removeEventListener('scroll', this.handleScroll);
+    mounted() {
+        if (process.client) { 
+            this.scrollContainer = this.$el.closest('#scroll-container') || window
+            this.scrollContainer.addEventListener('scroll', this.handleScroll)         
+        }
+    },
+    destroyed() {
+        if (process.client) {
+            this.scrollContainer.removeEventListener('scroll', this.handleScroll)
+        }  
     },
     methods: {
         handleScroll (event) {
-            let windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let contentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrollPercentage = (windowScroll / contentHeight) * 100;
-            document.querySelector(".scroll-progress").style.height = scrollPercentage + "%";
+            let containerScroll, contentHeight
+
+            if (this.scrollContainer == window) {
+                containerScroll = document.body.scrollTop || document.documentElement.scrollTop
+                contentHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+            } else {
+                containerScroll = this.scrollContainer.scrollTop
+                contentHeight = this.scrollContainer.scrollHeight - this.scrollContainer.clientHeight
+            }
+            
+            let scrollPercentage = (containerScroll / contentHeight) * 100
+            document.querySelector(".scroll-progress").style.height = scrollPercentage + "%"
         }
     }
 }
