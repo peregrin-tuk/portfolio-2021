@@ -13,6 +13,12 @@ export default {
   head () {
     return {
       title: 'Valleyhammer | Contact',
+      meta: [
+        { hid: 'description', name: 'description', content: "Let's get in touch!" },
+        { hid: 'og:title', name: 'og:title', property: 'og:title', content: "Valleyhammer | Contact" },
+        { hid: 'og:description', name: 'og:description', property: 'og:description', content: "Let's get in touch!" },
+        { hid: 'og:type', name: 'og:type', property: 'og:type', content: "website" },
+      ],
     }
   },
   methods: {
