@@ -84,7 +84,7 @@ export default {
             `plugins/**/*.{js,ts}`,
             `nuxt.config.{js,ts}`
         ],
-        safeList: ['leading-6', 'text-justify', 'text-h5', 'capitalize', 'mb-3', 'text-accentSoft', 'text-accent2'],
+        safeList: ['leading-6', 'text-justify', 'text-h5', 'capitalize', 'mb-3', 'mt-8', 'text-accentSoft', 'text-accent2', 'self-start', 'self-center', 'self-end'],
     }
   }
   

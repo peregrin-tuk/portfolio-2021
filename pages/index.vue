@@ -26,7 +26,14 @@ export default {
   },
   head () {
     return {
-      title: 'Valleyhammer | Portfolio',
+      title: this.og_tags.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.og_tags.description },
+        { hid: 'og:title', name: 'og:title', content: this.og_tags.title },
+        { hid: 'og:description', name: 'og:description', content: this.og_tags.description },
+        { hid: 'og:type', name: 'og:type', content: 'website' },
+        { hid: 'og:image', name: 'og:image', content: this.og_tags.image.url },
+      ],
     }
   },
   data() {
@@ -56,6 +63,7 @@ export default {
   },
   async asyncData({ $prismic, error }) {
     try{
+      const og_tags = (await $prismic.api.getSingle('open_graph_tags')).data
       const header = (await $prismic.api.getSingle('header')).data
       const recent_projects = (await $prismic.api.getSingle('featured_projects', { fetchLinks : ['project.title', 'project.teaser', 'project.tags', 'project.key_image'] })).data
       const about = (await $prismic.api.getSingle('about')).data
@@ -72,6 +80,7 @@ export default {
           }
       )).results[0]['last_publication_date']
       return { 
+        og_tags: og_tags,
         header: header,
         recent_projects: recent_projects,
         about: about,

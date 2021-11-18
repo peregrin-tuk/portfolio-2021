@@ -98,6 +98,13 @@ export default {
   head () {
     return {
       title: 'Valleyhammer | ' + this.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.teaser },
+        { hid: 'og:title', name: 'og:title', content: this.title },
+        { hid: 'og:description', name: 'og:description', content: this.teaser },
+        { hid: 'og:type', name: 'og:type', content: 'article' },
+        { hid: 'og:image', name: 'og:image', content: this.key_image.mobile.url },
+      ],
     }
   },
   data() {
