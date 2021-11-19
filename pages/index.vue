@@ -5,7 +5,7 @@
       <recent-projects-section :content="recent_projects" />
       <about-section :content="about" />
       <bottom-section :content="bottom" :footer="footer" :last_updated="last_updated_date" />
-      <!-- <div class="hidden leading-6 text-justify text-h5 capitalize mb-3 text-accentSoft text-accent2">dynamic tailwind classes</div> -->
+      <!-- <div class="hidden leading-6 text-justify text-h5 capitalize mb-3 mt-8 text-accentSoft text-accent2">dynamic tailwind classes</div> -->
     </main>
 </template>
 
