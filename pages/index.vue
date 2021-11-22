@@ -5,7 +5,7 @@
       <recent-projects-section :content="recent_projects" />
       <about-section :content="about" />
       <bottom-section :content="bottom" :footer="footer" :last_updated="last_updated_date" />
-      <!-- <div class="hidden leading-6 text-justify text-h5 capitalize mb-3 text-accentSoft text-accent2">dynamic tailwind classes</div> -->
+      <!-- <div class="hidden leading-6 text-justify text-h5 capitalize mb-3 mt-8 text-accentSoft text-accent2">dynamic tailwind classes</div> -->
     </main>
 </template>
 
@@ -29,10 +29,10 @@ export default {
       title: this.og_tags.title,
       meta: [
         { hid: 'description', name: 'description', content: this.og_tags.description },
-        { hid: 'og:title', name: 'og:title', content: this.og_tags.title },
-        { hid: 'og:description', name: 'og:description', content: this.og_tags.description },
-        { hid: 'og:type', name: 'og:type', content: 'website' },
-        { hid: 'og:image', name: 'og:image', content: this.og_tags.image.url },
+        { hid: 'og:title', name: 'og:title', property: 'og:title', content: this.og_tags.title },
+        { hid: 'og:description', name: 'og:description', property: 'og:description', content: this.og_tags.description },
+        { hid: 'og:type', name: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:image', name: 'og:image', property: 'og:image', content: this.og_tags.image.url },
       ],
     }
   },

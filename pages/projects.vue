@@ -123,9 +123,9 @@ export default {
       title: "Valleyhammer | Projects",
       meta: [
         { hid: 'description', name: 'description', content: "A storybook of code adventures and design explorations. Featuring the projects I've been working on over the past couple of years." },
-        { hid: 'og:title', name: 'og:title', content: "Valleyhammer | Projects" },
-        { hid: 'og:description', name: 'og:description', content: "A storybook of code adventures and design explorations. Featuring the projects I've been working on over the past couple of years." },
-        { hid: 'og:type', name: 'og:type', content: 'website' },
+        { hid: 'og:title', name: 'og:title', property: 'og:title', content: "Valleyhammer | Projects" },
+        { hid: 'og:description', name: 'og:description', property: 'og:description', content: "A storybook of code adventures and design explorations. Featuring the projects I've been working on over the past couple of years." },
+        { hid: 'og:type', name: 'og:type', property: 'og:type', content: "website" },
       ],
     };
   },

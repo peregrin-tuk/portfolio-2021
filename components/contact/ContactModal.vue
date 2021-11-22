@@ -7,7 +7,7 @@
 
             <div v-if="!sent" class="w-full sm:w-10/12 md:w-9/12 xl:w-244 rounded-lg cursor-default">
                 <div class="h-20 w-full rounded-t-lg bg-backgroundAccent flex justify-center items-center">
-                    <span class="text-textBright text-h4 md:text-h3 tracking-wide">Good Afternoon!</span>
+                    <span class="text-textBright text-h4 md:text-h3 tracking-wide">{{ content.modal_header || 'Hey there!' }}</span>
                 </div>
                 <div class="w-full rounded-b-lg bg-textBright flex justify-center">
                     <div class="w-136 m-8 md:mx-20 tracking-wide text-background text-sm font-secondary">

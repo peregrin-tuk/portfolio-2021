@@ -100,10 +100,10 @@ export default {
       title: 'Valleyhammer | ' + this.title,
       meta: [
         { hid: 'description', name: 'description', content: this.teaser },
-        { hid: 'og:title', name: 'og:title', content: this.title },
-        { hid: 'og:description', name: 'og:description', content: this.teaser },
-        { hid: 'og:type', name: 'og:type', content: 'article' },
-        { hid: 'og:image', name: 'og:image', content: this.key_image.mobile.url },
+        { hid: 'og:title', name: 'og:title', property: 'og:title', content: this.title },
+        { hid: 'og:description', name: 'og:description', property: 'og:description', content: this.teaser },
+        { hid: 'og:type', name: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:image', name: 'og:image', property: 'og:image', content: this.key_image.mobile.url },
       ],
     }
   },
