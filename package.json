@@ -14,7 +14,7 @@
     "core-js": "^3.21.0",
     "eslint": "^8.8.0",
     "nuxt": "^2.15.7",
-    "sass": "^1.49.7",
+    "sass": "^1.50.1",
     "v-shared-element": "^3.1.0"
   },
   "devDependencies": {
